@@ -2,7 +2,7 @@ name: mysql-source-lab
 on:
   push:
     branches: [main]
-    paths: ['upstream/mysql', '.gitmodules', 'ci/**', 'tools/**', 'sql/**', 'data/**', '.github/workflows/mysql.yml']
+    paths: ['upstream/mysql', '.gitmodules', 'ci/build-mysql.sh', 'tools/generate_data.py', 'sql/**', 'data/**', '.github/workflows/mysql.yml', 'tools/relational_demo.py']
   workflow_dispatch:
 permissions:
   contents: read

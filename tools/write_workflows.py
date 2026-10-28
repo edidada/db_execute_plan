@@ -9,6 +9,15 @@ software = {
     'iceberg': ('sudo apt-get update && sudo apt-get install -y build-essential', 'python -m pip install pyspark==3.5.6'),
 }
 for name, (deps, pip) in software.items():
+    paths = [f'upstream/{name}', '.gitmodules', f'ci/build-{name}.sh', 'tools/generate_data.py', 'sql/**', 'data/**', f'.github/workflows/{name}.yml']
+    if name in {'postgres', 'mysql', 'duckdb'}:
+        paths.append('tools/relational_demo.py')
+    else:
+        paths.append(f'tools/{name}_demo.py')
+    if name == 'postgres':
+        paths.extend(['plan-audit/**', 'pom.xml'])
+    if name == 'iceberg':
+        paths.append('ci/iceberg-submodule.init.gradle')
     extra = ''
     if name == 'datafusion':
         extra = '''      - name: Rust 1.88.0
@@ -33,7 +42,7 @@ for name, (deps, pip) in software.items():
 on:
   push:
     branches: [main]
-    paths: ['upstream/{name}', '.gitmodules', 'ci/**', 'tools/**', 'sql/**', 'data/**', '.github/workflows/{name}.yml']
+    paths: {paths!r}
   workflow_dispatch:
 permissions:
   contents: read

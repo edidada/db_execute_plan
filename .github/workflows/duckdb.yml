@@ -2,7 +2,7 @@ name: duckdb-source-lab
 on:
   push:
     branches: [main]
-    paths: ['upstream/duckdb', '.gitmodules', 'ci/**', 'tools/**', 'sql/**', 'data/**', '.github/workflows/duckdb.yml']
+    paths: ['upstream/duckdb', '.gitmodules', 'ci/build-duckdb.sh', 'tools/generate_data.py', 'sql/**', 'data/**', '.github/workflows/duckdb.yml', 'tools/relational_demo.py']
   workflow_dispatch:
 permissions:
   contents: read

@@ -1,0 +1,5 @@
+// The upstream git-properties plugin expects a directory, whereas a submodule
+// has a .git indirection file. Preserve the real upstream build provenance.
+gradle.projectsEvaluated {
+    rootProject.gitProperties.dotGitDirectory.set(new File(System.getenv('ICEBERG_GIT_DIR')))
+}

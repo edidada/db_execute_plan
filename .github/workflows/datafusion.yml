@@ -2,7 +2,7 @@ name: datafusion-source-lab
 on:
   push:
     branches: [main]
-    paths: ['upstream/datafusion', '.gitmodules', 'ci/**', 'tools/**', 'sql/**', 'data/**', '.github/workflows/datafusion.yml']
+    paths: ['upstream/datafusion', '.gitmodules', 'ci/build-datafusion.sh', 'tools/generate_data.py', 'sql/**', 'data/**', '.github/workflows/datafusion.yml', 'tools/datafusion_demo.py']
   workflow_dispatch:
 permissions:
   contents: read

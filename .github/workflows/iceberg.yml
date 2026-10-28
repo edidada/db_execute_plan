@@ -2,7 +2,7 @@ name: iceberg-source-lab
 on:
   push:
     branches: [main]
-    paths: ['upstream/iceberg', '.gitmodules', 'ci/**', 'tools/**', 'sql/**', 'data/**', '.github/workflows/iceberg.yml']
+    paths: ['upstream/iceberg', '.gitmodules', 'ci/build-iceberg.sh', 'tools/generate_data.py', 'sql/**', 'data/**', '.github/workflows/iceberg.yml', 'tools/iceberg_demo.py', 'ci/iceberg-submodule.init.gradle']
   workflow_dispatch:
 permissions:
   contents: read
