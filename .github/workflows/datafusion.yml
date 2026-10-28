@@ -1,0 +1,52 @@
+name: datafusion-source-lab
+on:
+  push:
+    branches: [main]
+    paths: ['upstream/datafusion', '.gitmodules', 'ci/**', 'tools/**', 'sql/**', 'data/**', '.github/workflows/datafusion.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: datafusion-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  source-and-plan:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 180
+    env:
+      CARGO_PROFILE_RELEASE_DEBUG: '0'
+      CARGO_PROFILE_RELEASE_LTO: 'false'
+    steps:
+      - uses: actions/checkout@v4
+      - name: Initialize only this pinned submodule
+        run: git submodule update --init --depth 1 upstream/datafusion
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Rust 1.88.0
+        run: rustup toolchain install 1.88.0 --profile minimal && rustup default 1.88.0
+        env:
+          RUSTUP_MAX_RETRIES: '5'
+      - name: Dependencies
+        run: |
+          sudo apt-get update && sudo apt-get install -y build-essential pkg-config libssl-dev clang cmake
+          python --version
+      - name: Record environment and generate public-schema data
+        run: |
+          mkdir -p artifacts
+          git rev-parse HEAD > artifacts/repository-sha.txt
+          git -C upstream/datafusion rev-parse HEAD > artifacts/upstream-sha.txt
+          uname -a > artifacts/runner.txt
+          python tools/generate_data.py | tee artifacts/data-manifest.json
+      - name: Build source and run plan experiments
+        shell: bash
+        run: |
+          set -o pipefail
+          bash ci/build-datafusion.sh 2>&1 | tee artifacts/build-and-demo.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: datafusion-plans-${{ github.run_id }}
+          path: artifacts/
+          retention-days: 14
+          if-no-files-found: error

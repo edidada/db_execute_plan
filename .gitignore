@@ -1,0 +1,17 @@
+.DS_Store
+._*
+.Spotlight-V100/
+.Trashes/
+__MACOSX/
+Thumbs.db
+.idea/
+.vscode/
+__pycache__/
+*.pyc
+.venv/
+target/
+build/
+.gradle/
+artifacts/
+data/generated/
+warehouse/

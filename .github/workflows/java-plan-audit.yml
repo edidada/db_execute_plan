@@ -1,0 +1,39 @@
+name: java17-plan-audit
+on:
+  push:
+    branches: [main]
+    paths: ['pom.xml', 'plan-audit/**', '*.gradle', '.github/workflows/java-plan-audit.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        tool: [maven, gradle]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: gradle/actions/setup-gradle@v4
+        if: matrix.tool == 'gradle'
+        with:
+          gradle-version: '8.14.3'
+      - run: mvn -B -ntp verify
+        if: matrix.tool == 'maven'
+      - run: gradle --no-daemon build
+        if: matrix.tool == 'gradle'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: java17-${{ matrix.tool }}-${{ github.run_id }}
+          path: |
+            plan-audit/target/*.jar
+            plan-audit/target/surefire-reports/
+            plan-audit/build/reports/
+            plan-audit/build/distributions/

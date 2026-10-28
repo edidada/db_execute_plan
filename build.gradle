@@ -1,0 +1,16 @@
+subprojects {
+    apply plugin: 'java'
+    repositories { mavenCentral() }
+    java { toolchain { languageVersion = JavaLanguageVersion.of(17) } }
+    tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8'; options.release = 17 }
+    test { useJUnitPlatform() }
+}
+project(':plan-audit') {
+    apply plugin: 'application'
+    application { mainClass = 'io.github.edidada.plan.PlanAudit' }
+    dependencies {
+        implementation 'com.fasterxml.jackson.core:jackson-databind:2.18.4'
+        testImplementation 'org.junit.jupiter:junit-jupiter:5.11.4'
+        testRuntimeOnly 'org.junit.platform:junit-platform-launcher:1.11.4'
+    }
+}

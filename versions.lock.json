@@ -1,0 +1,45 @@
+{
+  "upstreams": [
+    {
+      "name": "postgres",
+      "repository": "https://github.com/postgres/postgres.git",
+      "tag": "REL_17_6",
+      "commit": "7885b94dd81b98bbab9ed878680d156df7bf857f",
+      "path": "upstream/postgres"
+    },
+    {
+      "name": "mysql",
+      "repository": "https://github.com/mysql/mysql-server.git",
+      "tag": "mysql-8.4.6",
+      "commit": "3f821bcb4ee93cd90c0ffa0f8e17bb9677502acf",
+      "path": "upstream/mysql"
+    },
+    {
+      "name": "duckdb",
+      "repository": "https://github.com/duckdb/duckdb.git",
+      "tag": "v1.3.2",
+      "commit": "0b83e5d2f68bc02dfefde74b846bd039f078affa",
+      "path": "upstream/duckdb"
+    },
+    {
+      "name": "datafusion",
+      "repository": "https://github.com/apache/datafusion.git",
+      "tag": "49.0.2",
+      "commit": "f43df3f2ae3aafb347996c58e852cc378807095b",
+      "path": "upstream/datafusion"
+    },
+    {
+      "name": "iceberg",
+      "repository": "https://github.com/apache/iceberg.git",
+      "tag": "apache-iceberg-1.9.2",
+      "commit": "071d5606bc6199a0be9b3f274ec7fbf111d88821",
+      "path": "upstream/iceberg"
+    }
+  ],
+  "java": "17",
+  "gradle": "8.14.3",
+  "spark": "3.5.6",
+  "scala": "2.12",
+  "rust": "1.88.0",
+  "python": "3.11"
+}

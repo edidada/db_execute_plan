@@ -1,0 +1,20 @@
+[submodule "upstream/postgres"]
+	path = upstream/postgres
+	url = https://github.com/postgres/postgres.git
+	shallow = true
+[submodule "upstream/mysql"]
+	path = upstream/mysql
+	url = https://github.com/mysql/mysql-server.git
+	shallow = true
+[submodule "upstream/duckdb"]
+	path = upstream/duckdb
+	url = https://github.com/duckdb/duckdb.git
+	shallow = true
+[submodule "upstream/datafusion"]
+	path = upstream/datafusion
+	url = https://github.com/apache/datafusion.git
+	shallow = true
+[submodule "upstream/iceberg"]
+	path = upstream/iceberg
+	url = https://github.com/apache/iceberg.git
+	shallow = true
