@@ -1,0 +1,1 @@
+{"customers": 1001, "orders": 100000, "expected": {"AUTOMOBILE": 1028, "BUILDING": 46295, "FURNITURE": 1028, "MACHINERY": 1028, "HOUSEHOLD": 1028}}

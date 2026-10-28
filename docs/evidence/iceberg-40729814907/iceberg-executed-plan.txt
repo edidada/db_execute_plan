@@ -1,0 +1,35 @@
+AdaptiveSparkPlan isFinalPlan=true
++- == Final Plan ==
+   *(4) Sort [c_mktsegment#11 ASC NULLS FIRST], true, 0
+   +- AQEShuffleRead coalesced
+      +- ShuffleQueryStage 2
+         +- Exchange rangepartitioning(c_mktsegment#11 ASC NULLS FIRST, 2), ENSURE_REQUIREMENTS, [plan_id=334]
+            +- *(3) HashAggregate(keys=[c_mktsegment#11], functions=[count(1)], output=[c_mktsegment#11, n#84L])
+               +- AQEShuffleRead coalesced
+                  +- ShuffleQueryStage 1
+                     +- Exchange hashpartitioning(c_mktsegment#11, 2), ENSURE_REQUIREMENTS, [plan_id=298]
+                        +- *(2) HashAggregate(keys=[c_mktsegment#11], functions=[partial_count(1)], output=[c_mktsegment#11, count#101L])
+                           +- *(2) Project [c_mktsegment#11]
+                              +- *(2) BroadcastHashJoin [c_custkey#10L], [o_custkey#86L], Inner, BuildLeft, false
+                                 :- BroadcastQueryStage 0
+                                 :  +- BroadcastExchange HashedRelationBroadcastMode(List(input[0, bigint, false]),false), [plan_id=231]
+                                 :     +- *(1) Filter isnotnull(c_custkey#10L)
+                                 :        +- FileScan csv [c_custkey#10L,c_mktsegment#11] Batched: false, DataFilters: [isnotnull(c_custkey#10L)], Format: CSV, Location: InMemoryFileIndex(1 paths)[file:/home/runner/work/db_execute_plan/db_execute_plan/data/generated/..., PartitionFilters: [], PushedFilters: [IsNotNull(c_custkey)], ReadSchema: struct<c_custkey:bigint,c_mktsegment:string>
+                                 +- *(2) Project [o_custkey#86L]
+                                    +- *(2) Filter isnotnull(o_custkey#86L)
+                                       +- *(2) ColumnarToRow
+                                          +- BatchScan lab.demo.orders[o_custkey#86L, o_orderdate#87] lab.demo.orders (branch=null) [filters=o_orderdate IS NOT NULL, o_orderdate >= 9312, o_custkey IS NOT NULL, groupedBy=] RuntimeFilters: []
++- == Initial Plan ==
+   Sort [c_mktsegment#11 ASC NULLS FIRST], true, 0
+   +- Exchange rangepartitioning(c_mktsegment#11 ASC NULLS FIRST, 2), ENSURE_REQUIREMENTS, [plan_id=206]
+      +- HashAggregate(keys=[c_mktsegment#11], functions=[count(1)], output=[c_mktsegment#11, n#84L])
+         +- Exchange hashpartitioning(c_mktsegment#11, 2), ENSURE_REQUIREMENTS, [plan_id=203]
+            +- HashAggregate(keys=[c_mktsegment#11], functions=[partial_count(1)], output=[c_mktsegment#11, count#101L])
+               +- Project [c_mktsegment#11]
+                  +- BroadcastHashJoin [c_custkey#10L], [o_custkey#86L], Inner, BuildLeft, false
+                     :- BroadcastExchange HashedRelationBroadcastMode(List(input[0, bigint, false]),false), [plan_id=198]
+                     :  +- Filter isnotnull(c_custkey#10L)
+                     :     +- FileScan csv [c_custkey#10L,c_mktsegment#11] Batched: false, DataFilters: [isnotnull(c_custkey#10L)], Format: CSV, Location: InMemoryFileIndex(1 paths)[file:/home/runner/work/db_execute_plan/db_execute_plan/data/generated/..., PartitionFilters: [], PushedFilters: [IsNotNull(c_custkey)], ReadSchema: struct<c_custkey:bigint,c_mktsegment:string>
+                     +- Project [o_custkey#86L]
+                        +- Filter isnotnull(o_custkey#86L)
+                           +- BatchScan lab.demo.orders[o_custkey#86L, o_orderdate#87] lab.demo.orders (branch=null) [filters=o_orderdate IS NOT NULL, o_orderdate >= 9312, o_custkey IS NOT NULL, groupedBy=] RuntimeFilters: []

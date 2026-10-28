@@ -1,0 +1,12 @@
+== Physical Plan ==
+* ColumnarToRow (2)
++- BatchScan lab.demo.orders (1)
+
+
+(1) BatchScan lab.demo.orders
+Output [5]: [o_orderkey#285L, o_custkey#286L, o_orderdate#287, o_totalprice#288, o_orderstatus#289]
+lab.demo.orders (branch=null) [filters=o_orderdate IS NOT NULL, o_orderdate >= 9465, groupedBy=]
+
+(2) ColumnarToRow [codegen id : 1]
+Input [5]: [o_orderkey#285L, o_custkey#286L, o_orderdate#287, o_totalprice#288, o_orderstatus#289]
+

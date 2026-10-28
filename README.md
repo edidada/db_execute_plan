@@ -13,6 +13,8 @@
 4. [固定版本源码路线](docs/04-source-map.md)：从 SQL 到优化器、执行器和存储层。
 5. [书籍、论文、官方文档及双语术语](docs/05-references.md)：每章的 B/P/D 引用可在这里定位。
 6. [数据来源与生成规则](data/README.md)、[交付与 CI 证据](docs/06-delivery.md)。
+7. [PostgreSQL 真实计划案例](docs/07-postgres-observed-case.md)：热点顺扫、冷点索引、200 倍估计误差及原始 JSON。
+8. [Iceberg 真实快照与 AQE 案例](docs/08-iceberg-observed-case.md)：源码 jar、24 个文件、历史读取及最终执行计划。
 
 ## 软件与版本
 

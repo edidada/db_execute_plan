@@ -1,0 +1,65 @@
+{
+  "checked_at_utc": "2026-10-28T16:58:24.127558+00:00",
+  "latest_runs": {
+    "mysql-source-lab": {
+      "conclusion": "",
+      "createdAt": "2026-10-28T16:49:54Z",
+      "databaseId": 40729814921,
+      "headSha": "c03c14c7b144b510b86c1bd1f38ace1016ca8319",
+      "status": "in_progress",
+      "updatedAt": "2026-10-28T16:50:40Z",
+      "url": "https://github.com/edidada/db_execute_plan/actions/runs/40729814921",
+      "workflowName": "mysql-source-lab"
+    },
+    "iceberg-source-lab": {
+      "conclusion": "success",
+      "createdAt": "2026-10-28T16:49:54Z",
+      "databaseId": 40729814907,
+      "headSha": "c03c14c7b144b510b86c1bd1f38ace1016ca8319",
+      "status": "completed",
+      "updatedAt": "2026-10-28T16:56:19Z",
+      "url": "https://github.com/edidada/db_execute_plan/actions/runs/40729814907",
+      "workflowName": "iceberg-source-lab"
+    },
+    "duckdb-source-lab": {
+      "conclusion": "",
+      "createdAt": "2026-10-28T16:49:53Z",
+      "databaseId": 40729814779,
+      "headSha": "c03c14c7b144b510b86c1bd1f38ace1016ca8319",
+      "status": "in_progress",
+      "updatedAt": "2026-10-28T16:50:40Z",
+      "url": "https://github.com/edidada/db_execute_plan/actions/runs/40729814779",
+      "workflowName": "duckdb-source-lab"
+    },
+    "datafusion-source-lab": {
+      "conclusion": "",
+      "createdAt": "2026-10-28T16:49:53Z",
+      "databaseId": 40729814687,
+      "headSha": "c03c14c7b144b510b86c1bd1f38ace1016ca8319",
+      "status": "in_progress",
+      "updatedAt": "2026-10-28T16:50:37Z",
+      "url": "https://github.com/edidada/db_execute_plan/actions/runs/40729814687",
+      "workflowName": "datafusion-source-lab"
+    },
+    "postgres-source-lab": {
+      "conclusion": "success",
+      "createdAt": "2026-10-28T16:49:53Z",
+      "databaseId": 40729814655,
+      "headSha": "c03c14c7b144b510b86c1bd1f38ace1016ca8319",
+      "status": "completed",
+      "updatedAt": "2026-10-28T16:53:18Z",
+      "url": "https://github.com/edidada/db_execute_plan/actions/runs/40729814655",
+      "workflowName": "postgres-source-lab"
+    },
+    "java17-plan-audit": {
+      "conclusion": "success",
+      "createdAt": "2026-10-28T16:46:29Z",
+      "databaseId": 40729263228,
+      "headSha": "2b800472cb393e99ad7d2929c2f16e4a9ef9c0a3",
+      "status": "completed",
+      "updatedAt": "2026-10-28T16:47:37Z",
+      "url": "https://github.com/edidada/db_execute_plan/actions/runs/40729263228",
+      "workflowName": "java17-plan-audit"
+    }
+  }
+}

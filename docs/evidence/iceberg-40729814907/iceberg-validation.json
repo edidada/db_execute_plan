@@ -1,0 +1,27 @@
+{
+  "old_snapshot": 2900972664143163041,
+  "old_count": 90000,
+  "current_count": 100000,
+  "aggregate": [
+    [
+      "AUTOMOBILE",
+      1028
+    ],
+    [
+      "BUILDING",
+      46295
+    ],
+    [
+      "FURNITURE",
+      1028
+    ],
+    [
+      "HOUSEHOLD",
+      1028
+    ],
+    [
+      "MACHINERY",
+      1028
+    ]
+  ]
+}
