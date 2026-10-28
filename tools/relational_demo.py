@@ -15,7 +15,12 @@ if engine == 'duckdb':
     class SourceDuckDB:
         def execute(self, sql):
             proc = subprocess.run([os.environ['DUCKDB_CLI'], 'artifacts/duckdb.db', '-json', '-c', sql], capture_output=True, text=True, check=True)
-            self.rows = [tuple(r.values()) for r in json.loads(proc.stdout or '[]')]
+            # DuckDB 1.3.2 shell renders EXPLAIN specially, even with -json.
+            # Preserve that raw plan; parse JSON only for ordinary result sets.
+            if sql.lstrip().upper().startswith('EXPLAIN'):
+                self.rows = [(proc.stdout,)]
+            else:
+                self.rows = [tuple(r.values()) for r in json.loads(proc.stdout or '[]')]
             return self
         def fetchall(self):
             return self.rows
