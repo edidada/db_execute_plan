@@ -1,6 +1,16 @@
 {
-  "checked_at_utc": "2026-10-28T16:58:24.127558+00:00",
+  "checked_at_utc": "2026-10-28T17:01:35.698175+00:00",
   "latest_runs": {
+    "duckdb-source-lab": {
+      "conclusion": "",
+      "createdAt": "2026-10-28T17:01:13Z",
+      "databaseId": 40731640877,
+      "headSha": "a5f09829fa5eb5f003f4d666d3983fbf36768047",
+      "status": "pending",
+      "updatedAt": "2026-10-28T17:01:15Z",
+      "url": "https://github.com/edidada/db_execute_plan/actions/runs/40731640877",
+      "workflowName": "duckdb-source-lab"
+    },
     "mysql-source-lab": {
       "conclusion": "",
       "createdAt": "2026-10-28T16:49:54Z",
@@ -21,23 +31,13 @@
       "url": "https://github.com/edidada/db_execute_plan/actions/runs/40729814907",
       "workflowName": "iceberg-source-lab"
     },
-    "duckdb-source-lab": {
-      "conclusion": "",
-      "createdAt": "2026-10-28T16:49:53Z",
-      "databaseId": 40729814779,
-      "headSha": "c03c14c7b144b510b86c1bd1f38ace1016ca8319",
-      "status": "in_progress",
-      "updatedAt": "2026-10-28T16:50:40Z",
-      "url": "https://github.com/edidada/db_execute_plan/actions/runs/40729814779",
-      "workflowName": "duckdb-source-lab"
-    },
     "datafusion-source-lab": {
-      "conclusion": "",
+      "conclusion": "failure",
       "createdAt": "2026-10-28T16:49:53Z",
       "databaseId": 40729814687,
       "headSha": "c03c14c7b144b510b86c1bd1f38ace1016ca8319",
-      "status": "in_progress",
-      "updatedAt": "2026-10-28T16:50:37Z",
+      "status": "completed",
+      "updatedAt": "2026-10-28T17:01:28Z",
       "url": "https://github.com/edidada/db_execute_plan/actions/runs/40729814687",
       "workflowName": "datafusion-source-lab"
     },
