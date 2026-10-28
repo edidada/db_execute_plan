@@ -4,7 +4,7 @@ from pathlib import Path
 software = {
     'postgres': ('sudo apt-get update && sudo apt-get install -y build-essential bison flex zlib1g-dev libssl-dev', 'python -m pip install "psycopg[binary]==3.2.9"'),
     'mysql': ('sudo apt-get update && sudo apt-get install -y build-essential cmake ninja-build bison pkg-config libssl-dev libncurses-dev libtirpc-dev libudev-dev libaio-dev', 'python -m pip install PyMySQL==1.1.1'),
-    'duckdb': ('sudo apt-get update && sudo apt-get install -y build-essential cmake ninja-build', ''),
+    'duckdb': ('sudo apt-get update && sudo apt-get install -y build-essential cmake ninja-build lld', ''),
     'datafusion': ('sudo apt-get update && sudo apt-get install -y build-essential pkg-config libssl-dev clang cmake', ''),
     'iceberg': ('sudo apt-get update && sudo apt-get install -y build-essential', 'python -m pip install pyspark==3.5.6'),
 }
