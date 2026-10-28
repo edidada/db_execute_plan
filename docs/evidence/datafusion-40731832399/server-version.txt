@@ -1,0 +1,1 @@
+datafusion-cli 49.0.2

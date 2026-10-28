@@ -8,3 +8,5 @@
 *.gradle text eol=lf
 *.java text eol=lf
 *.json text eol=lf
+# Preserve upstream console/HTML formatting in captured acceptance evidence.
+docs/evidence/** -whitespace

@@ -1,0 +1,244 @@
+{
+  "artifacts/pg-after-index-1.json" : [ {
+    "path" : "0",
+    "operator" : "Aggregate",
+    "estimatedRowsPerLoop" : 1.0,
+    "actualRowsPerLoop" : 1.0,
+    "loops" : 1.0,
+    "approximateTotalRows" : 1.0,
+    "smoothedQError" : 1.0
+  }, {
+    "path" : "0.0",
+    "operator" : "Seq Scan",
+    "estimatedRowsPerLoop" : 89927.0,
+    "actualRowsPerLoop" : 90000.0,
+    "loops" : 1.0,
+    "approximateTotalRows" : 90000.0,
+    "smoothedQError" : 1.0008117695464098
+  } ],
+  "artifacts/pg-after-index-2.json" : [ {
+    "path" : "0",
+    "operator" : "Aggregate",
+    "estimatedRowsPerLoop" : 1.0,
+    "actualRowsPerLoop" : 1.0,
+    "loops" : 1.0,
+    "approximateTotalRows" : 1.0,
+    "smoothedQError" : 1.0
+  }, {
+    "path" : "0.0",
+    "operator" : "Index Only Scan",
+    "estimatedRowsPerLoop" : 10.0,
+    "actualRowsPerLoop" : 10.0,
+    "loops" : 1.0,
+    "approximateTotalRows" : 10.0,
+    "smoothedQError" : 1.0
+  } ],
+  "artifacts/pg-after-index-3.json" : [ {
+    "path" : "0",
+    "operator" : "Aggregate",
+    "estimatedRowsPerLoop" : 1.0,
+    "actualRowsPerLoop" : 1.0,
+    "loops" : 1.0,
+    "approximateTotalRows" : 1.0,
+    "smoothedQError" : 1.0
+  }, {
+    "path" : "0.0",
+    "operator" : "Seq Scan",
+    "estimatedRowsPerLoop" : 500.0,
+    "actualRowsPerLoop" : 100000.0,
+    "loops" : 1.0,
+    "approximateTotalRows" : 100000.0,
+    "smoothedQError" : 200.0
+  } ],
+  "artifacts/pg-after-index-4.json" : [ {
+    "path" : "0",
+    "operator" : "Aggregate",
+    "estimatedRowsPerLoop" : 1.0,
+    "actualRowsPerLoop" : 1.0,
+    "loops" : 1.0,
+    "approximateTotalRows" : 1.0,
+    "smoothedQError" : 1.0
+  }, {
+    "path" : "0.0",
+    "operator" : "Seq Scan",
+    "estimatedRowsPerLoop" : 100000.0,
+    "actualRowsPerLoop" : 100000.0,
+    "loops" : 1.0,
+    "approximateTotalRows" : 100000.0,
+    "smoothedQError" : 1.0
+  } ],
+  "artifacts/pg-after-index-5.json" : [ {
+    "path" : "0",
+    "operator" : "Sort",
+    "estimatedRowsPerLoop" : 5.0,
+    "actualRowsPerLoop" : 5.0,
+    "loops" : 1.0,
+    "approximateTotalRows" : 5.0,
+    "smoothedQError" : 1.0
+  }, {
+    "path" : "0.0",
+    "operator" : "Aggregate",
+    "estimatedRowsPerLoop" : 5.0,
+    "actualRowsPerLoop" : 5.0,
+    "loops" : 1.0,
+    "approximateTotalRows" : 5.0,
+    "smoothedQError" : 1.0
+  }, {
+    "path" : "0.0.0",
+    "operator" : "Hash Join",
+    "estimatedRowsPerLoop" : 50960.0,
+    "actualRowsPerLoop" : 50407.0,
+    "loops" : 1.0,
+    "approximateTotalRows" : 50407.0,
+    "smoothedQError" : 1.0109706985140952
+  }, {
+    "path" : "0.0.0.0",
+    "operator" : "Bitmap Heap Scan",
+    "estimatedRowsPerLoop" : 50960.0,
+    "actualRowsPerLoop" : 50407.0,
+    "loops" : 1.0,
+    "approximateTotalRows" : 50407.0,
+    "smoothedQError" : 1.0109706985140952
+  }, {
+    "path" : "0.0.0.0.0",
+    "operator" : "Bitmap Index Scan",
+    "estimatedRowsPerLoop" : 50960.0,
+    "actualRowsPerLoop" : 50407.0,
+    "loops" : 1.0,
+    "approximateTotalRows" : 50407.0,
+    "smoothedQError" : 1.0109706985140952
+  }, {
+    "path" : "0.0.0.1",
+    "operator" : "Hash",
+    "estimatedRowsPerLoop" : 1001.0,
+    "actualRowsPerLoop" : 1001.0,
+    "loops" : 1.0,
+    "approximateTotalRows" : 1001.0,
+    "smoothedQError" : 1.0
+  }, {
+    "path" : "0.0.0.1.0",
+    "operator" : "Seq Scan",
+    "estimatedRowsPerLoop" : 1001.0,
+    "actualRowsPerLoop" : 1001.0,
+    "loops" : 1.0,
+    "approximateTotalRows" : 1001.0,
+    "smoothedQError" : 1.0
+  } ],
+  "artifacts/pg-before-index-1.json" : [ {
+    "path" : "0",
+    "operator" : "Aggregate",
+    "estimatedRowsPerLoop" : 1.0,
+    "actualRowsPerLoop" : 1.0,
+    "loops" : 1.0,
+    "approximateTotalRows" : 1.0,
+    "smoothedQError" : 1.0
+  }, {
+    "path" : "0.0",
+    "operator" : "Seq Scan",
+    "estimatedRowsPerLoop" : 89980.0,
+    "actualRowsPerLoop" : 90000.0,
+    "loops" : 1.0,
+    "approximateTotalRows" : 90000.0,
+    "smoothedQError" : 1.0002222716159146
+  } ],
+  "artifacts/pg-before-index-2.json" : [ {
+    "path" : "0",
+    "operator" : "Aggregate",
+    "estimatedRowsPerLoop" : 1.0,
+    "actualRowsPerLoop" : 1.0,
+    "loops" : 1.0,
+    "approximateTotalRows" : 1.0,
+    "smoothedQError" : 1.0
+  }, {
+    "path" : "0.0",
+    "operator" : "Seq Scan",
+    "estimatedRowsPerLoop" : 10.0,
+    "actualRowsPerLoop" : 10.0,
+    "loops" : 1.0,
+    "approximateTotalRows" : 10.0,
+    "smoothedQError" : 1.0
+  } ],
+  "artifacts/pg-before-index-3.json" : [ {
+    "path" : "0",
+    "operator" : "Aggregate",
+    "estimatedRowsPerLoop" : 1.0,
+    "actualRowsPerLoop" : 1.0,
+    "loops" : 1.0,
+    "approximateTotalRows" : 1.0,
+    "smoothedQError" : 1.0
+  }, {
+    "path" : "0.0",
+    "operator" : "Seq Scan",
+    "estimatedRowsPerLoop" : 500.0,
+    "actualRowsPerLoop" : 100000.0,
+    "loops" : 1.0,
+    "approximateTotalRows" : 100000.0,
+    "smoothedQError" : 200.0
+  } ],
+  "artifacts/pg-before-index-4.json" : [ {
+    "path" : "0",
+    "operator" : "Aggregate",
+    "estimatedRowsPerLoop" : 1.0,
+    "actualRowsPerLoop" : 1.0,
+    "loops" : 1.0,
+    "approximateTotalRows" : 1.0,
+    "smoothedQError" : 1.0
+  }, {
+    "path" : "0.0",
+    "operator" : "Seq Scan",
+    "estimatedRowsPerLoop" : 99980.0,
+    "actualRowsPerLoop" : 100000.0,
+    "loops" : 1.0,
+    "approximateTotalRows" : 100000.0,
+    "smoothedQError" : 1.0002000400080016
+  } ],
+  "artifacts/pg-before-index-5.json" : [ {
+    "path" : "0",
+    "operator" : "Sort",
+    "estimatedRowsPerLoop" : 5.0,
+    "actualRowsPerLoop" : 5.0,
+    "loops" : 1.0,
+    "approximateTotalRows" : 5.0,
+    "smoothedQError" : 1.0
+  }, {
+    "path" : "0.0",
+    "operator" : "Aggregate",
+    "estimatedRowsPerLoop" : 5.0,
+    "actualRowsPerLoop" : 5.0,
+    "loops" : 1.0,
+    "approximateTotalRows" : 5.0,
+    "smoothedQError" : 1.0
+  }, {
+    "path" : "0.0.0",
+    "operator" : "Hash Join",
+    "estimatedRowsPerLoop" : 51108.0,
+    "actualRowsPerLoop" : 50407.0,
+    "loops" : 1.0,
+    "approximateTotalRows" : 50407.0,
+    "smoothedQError" : 1.0139067986589165
+  }, {
+    "path" : "0.0.0.0",
+    "operator" : "Seq Scan",
+    "estimatedRowsPerLoop" : 51108.0,
+    "actualRowsPerLoop" : 50407.0,
+    "loops" : 1.0,
+    "approximateTotalRows" : 50407.0,
+    "smoothedQError" : 1.0139067986589165
+  }, {
+    "path" : "0.0.0.1",
+    "operator" : "Hash",
+    "estimatedRowsPerLoop" : 1001.0,
+    "actualRowsPerLoop" : 1001.0,
+    "loops" : 1.0,
+    "approximateTotalRows" : 1001.0,
+    "smoothedQError" : 1.0
+  }, {
+    "path" : "0.0.0.1.0",
+    "operator" : "Seq Scan",
+    "estimatedRowsPerLoop" : 1001.0,
+    "actualRowsPerLoop" : 1001.0,
+    "loops" : 1.0,
+    "approximateTotalRows" : 1001.0,
+    "smoothedQError" : 1.0
+  } ]
+}

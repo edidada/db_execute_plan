@@ -1,0 +1,7 @@
+source-and-plan	UNKNOWN STEP	2026-10-28T17:40:31.8370932Z FAILED: [code=1] duckdb 
+source-and-plan	UNKNOWN STEP	2026-10-28T17:40:31.8394638Z mbedtls_wrapper.cpp:(.text+0x292): undefined reference to `duckdb::EncryptionState::~EncryptionState()'
+source-and-plan	UNKNOWN STEP	2026-10-28T17:40:31.8397852Z mbedtls_wrapper.cpp:(.text+0xca5): undefined reference to `duckdb::EncryptionState::EncryptionState(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const*)'
+source-and-plan	UNKNOWN STEP	2026-10-28T17:40:31.8400469Z mbedtls_wrapper.cpp:(.text+0x33): undefined reference to `duckdb::EncryptionState::~EncryptionState()'
+source-and-plan	UNKNOWN STEP	2026-10-28T17:40:31.8403553Z mbedtls_wrapper.cpp:(.text.unlikely+0x936): undefined reference to `duckdb::EncryptionState::~EncryptionState()'
+source-and-plan	UNKNOWN STEP	2026-10-28T17:40:31.8405985Z /usr/bin/ld: third_party/mbedtls/libduckdb_mbedtls.a(mbedtls_wrapper.cpp.o):(.data.rel.ro._ZTIN14duckdb_mbedtls14MbedTlsWrapper15AESStateMBEDTLSE[_ZTIN14duckdb_mbedtls14MbedTlsWrapper15AESStateMBEDTLSE]+0x10): undefined reference to `typeinfo for duckdb::EncryptionState'
+source-and-plan	UNKNOWN STEP	2026-10-28T17:40:31.8407793Z ninja: build stopped: subcommand failed.

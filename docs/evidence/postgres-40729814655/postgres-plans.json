@@ -1,0 +1,1115 @@
+[
+  {
+    "phase": "before-index",
+    "experiment": 1,
+    "sql": "SELECT COUNT(*) FROM orders WHERE o_custkey = 1",
+    "plan": [
+      [
+        [
+          {
+            "Plan": {
+              "Node Type": "Aggregate",
+              "Strategy": "Plain",
+              "Partial Mode": "Simple",
+              "Parallel Aware": false,
+              "Async Capable": false,
+              "Startup Cost": 2111.95,
+              "Total Cost": 2111.96,
+              "Plan Rows": 1,
+              "Plan Width": 8,
+              "Actual Startup Time": 11.441,
+              "Actual Total Time": 11.442,
+              "Actual Rows": 1,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 637,
+              "Shared Read Blocks": 0,
+              "Shared Dirtied Blocks": 0,
+              "Shared Written Blocks": 0,
+              "Local Hit Blocks": 0,
+              "Local Read Blocks": 0,
+              "Local Dirtied Blocks": 0,
+              "Local Written Blocks": 0,
+              "Temp Read Blocks": 0,
+              "Temp Written Blocks": 0,
+              "Plans": [
+                {
+                  "Node Type": "Seq Scan",
+                  "Parent Relationship": "Outer",
+                  "Parallel Aware": false,
+                  "Async Capable": false,
+                  "Relation Name": "orders",
+                  "Alias": "orders",
+                  "Startup Cost": 0.0,
+                  "Total Cost": 1887.0,
+                  "Plan Rows": 89980,
+                  "Plan Width": 0,
+                  "Actual Startup Time": 0.006,
+                  "Actual Total Time": 7.104,
+                  "Actual Rows": 90000,
+                  "Actual Loops": 1,
+                  "Filter": "(o_custkey = 1)",
+                  "Rows Removed by Filter": 10000,
+                  "Shared Hit Blocks": 637,
+                  "Shared Read Blocks": 0,
+                  "Shared Dirtied Blocks": 0,
+                  "Shared Written Blocks": 0,
+                  "Local Hit Blocks": 0,
+                  "Local Read Blocks": 0,
+                  "Local Dirtied Blocks": 0,
+                  "Local Written Blocks": 0,
+                  "Temp Read Blocks": 0,
+                  "Temp Written Blocks": 0
+                }
+              ]
+            },
+            "Planning": {
+              "Shared Hit Blocks": 22,
+              "Shared Read Blocks": 0,
+              "Shared Dirtied Blocks": 0,
+              "Shared Written Blocks": 0,
+              "Local Hit Blocks": 0,
+              "Local Read Blocks": 0,
+              "Local Dirtied Blocks": 0,
+              "Local Written Blocks": 0,
+              "Temp Read Blocks": 0,
+              "Temp Written Blocks": 0
+            },
+            "Planning Time": 0.082,
+            "Triggers": [],
+            "Execution Time": 11.453
+          }
+        ]
+      ]
+    ]
+  },
+  {
+    "phase": "before-index",
+    "experiment": 2,
+    "sql": "SELECT COUNT(*) FROM orders WHERE o_custkey = 1001",
+    "plan": [
+      [
+        [
+          {
+            "Plan": {
+              "Node Type": "Aggregate",
+              "Strategy": "Plain",
+              "Partial Mode": "Simple",
+              "Parallel Aware": false,
+              "Async Capable": false,
+              "Startup Cost": 1887.03,
+              "Total Cost": 1887.04,
+              "Plan Rows": 1,
+              "Plan Width": 8,
+              "Actual Startup Time": 4.657,
+              "Actual Total Time": 4.658,
+              "Actual Rows": 1,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 637,
+              "Shared Read Blocks": 0,
+              "Shared Dirtied Blocks": 0,
+              "Shared Written Blocks": 0,
+              "Local Hit Blocks": 0,
+              "Local Read Blocks": 0,
+              "Local Dirtied Blocks": 0,
+              "Local Written Blocks": 0,
+              "Temp Read Blocks": 0,
+              "Temp Written Blocks": 0,
+              "Plans": [
+                {
+                  "Node Type": "Seq Scan",
+                  "Parent Relationship": "Outer",
+                  "Parallel Aware": false,
+                  "Async Capable": false,
+                  "Relation Name": "orders",
+                  "Alias": "orders",
+                  "Startup Cost": 0.0,
+                  "Total Cost": 1887.0,
+                  "Plan Rows": 10,
+                  "Plan Width": 0,
+                  "Actual Startup Time": 4.242,
+                  "Actual Total Time": 4.654,
+                  "Actual Rows": 10,
+                  "Actual Loops": 1,
+                  "Filter": "(o_custkey = 1001)",
+                  "Rows Removed by Filter": 99990,
+                  "Shared Hit Blocks": 637,
+                  "Shared Read Blocks": 0,
+                  "Shared Dirtied Blocks": 0,
+                  "Shared Written Blocks": 0,
+                  "Local Hit Blocks": 0,
+                  "Local Read Blocks": 0,
+                  "Local Dirtied Blocks": 0,
+                  "Local Written Blocks": 0,
+                  "Temp Read Blocks": 0,
+                  "Temp Written Blocks": 0
+                }
+              ]
+            },
+            "Planning": {
+              "Shared Hit Blocks": 0,
+              "Shared Read Blocks": 0,
+              "Shared Dirtied Blocks": 0,
+              "Shared Written Blocks": 0,
+              "Local Hit Blocks": 0,
+              "Local Read Blocks": 0,
+              "Local Dirtied Blocks": 0,
+              "Local Written Blocks": 0,
+              "Temp Read Blocks": 0,
+              "Temp Written Blocks": 0
+            },
+            "Planning Time": 0.038,
+            "Triggers": [],
+            "Execution Time": 4.67
+          }
+        ]
+      ]
+    ]
+  },
+  {
+    "phase": "before-index",
+    "experiment": 3,
+    "sql": "SELECT COUNT(*) FROM orders WHERE EXTRACT(YEAR FROM o_orderdate) = 1995",
+    "plan": [
+      [
+        [
+          {
+            "Plan": {
+              "Node Type": "Aggregate",
+              "Strategy": "Plain",
+              "Partial Mode": "Simple",
+              "Parallel Aware": false,
+              "Async Capable": false,
+              "Startup Cost": 2138.25,
+              "Total Cost": 2138.26,
+              "Plan Rows": 1,
+              "Plan Width": 8,
+              "Actual Startup Time": 20.49,
+              "Actual Total Time": 20.491,
+              "Actual Rows": 1,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 637,
+              "Shared Read Blocks": 0,
+              "Shared Dirtied Blocks": 0,
+              "Shared Written Blocks": 0,
+              "Local Hit Blocks": 0,
+              "Local Read Blocks": 0,
+              "Local Dirtied Blocks": 0,
+              "Local Written Blocks": 0,
+              "Temp Read Blocks": 0,
+              "Temp Written Blocks": 0,
+              "Plans": [
+                {
+                  "Node Type": "Seq Scan",
+                  "Parent Relationship": "Outer",
+                  "Parallel Aware": false,
+                  "Async Capable": false,
+                  "Relation Name": "orders",
+                  "Alias": "orders",
+                  "Startup Cost": 0.0,
+                  "Total Cost": 2137.0,
+                  "Plan Rows": 500,
+                  "Plan Width": 0,
+                  "Actual Startup Time": 0.006,
+                  "Actual Total Time": 15.668,
+                  "Actual Rows": 100000,
+                  "Actual Loops": 1,
+                  "Filter": "(EXTRACT(year FROM o_orderdate) = '1995'::numeric)",
+                  "Rows Removed by Filter": 0,
+                  "Shared Hit Blocks": 637,
+                  "Shared Read Blocks": 0,
+                  "Shared Dirtied Blocks": 0,
+                  "Shared Written Blocks": 0,
+                  "Local Hit Blocks": 0,
+                  "Local Read Blocks": 0,
+                  "Local Dirtied Blocks": 0,
+                  "Local Written Blocks": 0,
+                  "Temp Read Blocks": 0,
+                  "Temp Written Blocks": 0
+                }
+              ]
+            },
+            "Planning": {
+              "Shared Hit Blocks": 6,
+              "Shared Read Blocks": 0,
+              "Shared Dirtied Blocks": 0,
+              "Shared Written Blocks": 0,
+              "Local Hit Blocks": 0,
+              "Local Read Blocks": 0,
+              "Local Dirtied Blocks": 0,
+              "Local Written Blocks": 0,
+              "Temp Read Blocks": 0,
+              "Temp Written Blocks": 0
+            },
+            "Planning Time": 0.034,
+            "Triggers": [],
+            "Execution Time": 20.498
+          }
+        ]
+      ]
+    ]
+  },
+  {
+    "phase": "before-index",
+    "experiment": 4,
+    "sql": "SELECT COUNT(*) FROM orders WHERE o_orderdate >= DATE '1995-01-01' AND o_orderdate < DATE '1996-01-01'",
+    "plan": [
+      [
+        [
+          {
+            "Plan": {
+              "Node Type": "Aggregate",
+              "Strategy": "Plain",
+              "Partial Mode": "Simple",
+              "Parallel Aware": false,
+              "Async Capable": false,
+              "Startup Cost": 2386.95,
+              "Total Cost": 2386.96,
+              "Plan Rows": 1,
+              "Plan Width": 8,
+              "Actual Startup Time": 12.731,
+              "Actual Total Time": 12.732,
+              "Actual Rows": 1,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 637,
+              "Shared Read Blocks": 0,
+              "Shared Dirtied Blocks": 0,
+              "Shared Written Blocks": 0,
+              "Local Hit Blocks": 0,
+              "Local Read Blocks": 0,
+              "Local Dirtied Blocks": 0,
+              "Local Written Blocks": 0,
+              "Temp Read Blocks": 0,
+              "Temp Written Blocks": 0,
+              "Plans": [
+                {
+                  "Node Type": "Seq Scan",
+                  "Parent Relationship": "Outer",
+                  "Parallel Aware": false,
+                  "Async Capable": false,
+                  "Relation Name": "orders",
+                  "Alias": "orders",
+                  "Startup Cost": 0.0,
+                  "Total Cost": 2137.0,
+                  "Plan Rows": 99980,
+                  "Plan Width": 0,
+                  "Actual Startup Time": 0.005,
+                  "Actual Total Time": 7.902,
+                  "Actual Rows": 100000,
+                  "Actual Loops": 1,
+                  "Filter": "((o_orderdate >= '1995-01-01'::date) AND (o_orderdate < '1996-01-01'::date))",
+                  "Rows Removed by Filter": 0,
+                  "Shared Hit Blocks": 637,
+                  "Shared Read Blocks": 0,
+                  "Shared Dirtied Blocks": 0,
+                  "Shared Written Blocks": 0,
+                  "Local Hit Blocks": 0,
+                  "Local Read Blocks": 0,
+                  "Local Dirtied Blocks": 0,
+                  "Local Written Blocks": 0,
+                  "Temp Read Blocks": 0,
+                  "Temp Written Blocks": 0
+                }
+              ]
+            },
+            "Planning": {
+              "Shared Hit Blocks": 6,
+              "Shared Read Blocks": 0,
+              "Shared Dirtied Blocks": 0,
+              "Shared Written Blocks": 0,
+              "Local Hit Blocks": 0,
+              "Local Read Blocks": 0,
+              "Local Dirtied Blocks": 0,
+              "Local Written Blocks": 0,
+              "Temp Read Blocks": 0,
+              "Temp Written Blocks": 0
+            },
+            "Planning Time": 0.038,
+            "Triggers": [],
+            "Execution Time": 12.74
+          }
+        ]
+      ]
+    ]
+  },
+  {
+    "phase": "before-index",
+    "experiment": 5,
+    "sql": "SELECT c.c_mktsegment, COUNT(*) AS n\nFROM customer c JOIN orders o ON c.c_custkey = o.o_custkey\nWHERE o.o_orderdate >= DATE '1995-07-01'\nGROUP BY c.c_mktsegment ORDER BY c.c_mktsegment",
+    "plan": [
+      [
+        [
+          {
+            "Plan": {
+              "Node Type": "Sort",
+              "Parallel Aware": false,
+              "Async Capable": false,
+              "Startup Cost": 2305.9,
+              "Total Cost": 2305.91,
+              "Plan Rows": 5,
+              "Plan Width": 17,
+              "Actual Startup Time": 19.061,
+              "Actual Total Time": 19.062,
+              "Actual Rows": 5,
+              "Actual Loops": 1,
+              "Sort Key": [
+                "c.c_mktsegment"
+              ],
+              "Sort Method": "quicksort",
+              "Sort Space Used": 25,
+              "Sort Space Type": "Memory",
+              "Shared Hit Blocks": 643,
+              "Shared Read Blocks": 0,
+              "Shared Dirtied Blocks": 0,
+              "Shared Written Blocks": 0,
+              "Local Hit Blocks": 0,
+              "Local Read Blocks": 0,
+              "Local Dirtied Blocks": 0,
+              "Local Written Blocks": 0,
+              "Temp Read Blocks": 0,
+              "Temp Written Blocks": 0,
+              "Plans": [
+                {
+                  "Node Type": "Aggregate",
+                  "Strategy": "Hashed",
+                  "Partial Mode": "Simple",
+                  "Parent Relationship": "Outer",
+                  "Parallel Aware": false,
+                  "Async Capable": false,
+                  "Startup Cost": 2305.79,
+                  "Total Cost": 2305.84,
+                  "Plan Rows": 5,
+                  "Plan Width": 17,
+                  "Actual Startup Time": 19.053,
+                  "Actual Total Time": 19.055,
+                  "Actual Rows": 5,
+                  "Actual Loops": 1,
+                  "Group Key": [
+                    "c.c_mktsegment"
+                  ],
+                  "Planned Partitions": 0,
+                  "HashAgg Batches": 1,
+                  "Peak Memory Usage": 24,
+                  "Disk Usage": 0,
+                  "Shared Hit Blocks": 643,
+                  "Shared Read Blocks": 0,
+                  "Shared Dirtied Blocks": 0,
+                  "Shared Written Blocks": 0,
+                  "Local Hit Blocks": 0,
+                  "Local Read Blocks": 0,
+                  "Local Dirtied Blocks": 0,
+                  "Local Written Blocks": 0,
+                  "Temp Read Blocks": 0,
+                  "Temp Written Blocks": 0,
+                  "Plans": [
+                    {
+                      "Node Type": "Hash Join",
+                      "Parent Relationship": "Outer",
+                      "Parallel Aware": false,
+                      "Async Capable": false,
+                      "Join Type": "Inner",
+                      "Startup Cost": 28.52,
+                      "Total Cost": 2050.25,
+                      "Plan Rows": 51108,
+                      "Plan Width": 9,
+                      "Actual Startup Time": 0.197,
+                      "Actual Total Time": 12.865,
+                      "Actual Rows": 50407,
+                      "Actual Loops": 1,
+                      "Inner Unique": true,
+                      "Hash Cond": "(o.o_custkey = c.c_custkey)",
+                      "Shared Hit Blocks": 643,
+                      "Shared Read Blocks": 0,
+                      "Shared Dirtied Blocks": 0,
+                      "Shared Written Blocks": 0,
+                      "Local Hit Blocks": 0,
+                      "Local Read Blocks": 0,
+                      "Local Dirtied Blocks": 0,
+                      "Local Written Blocks": 0,
+                      "Temp Read Blocks": 0,
+                      "Temp Written Blocks": 0,
+                      "Plans": [
+                        {
+                          "Node Type": "Seq Scan",
+                          "Parent Relationship": "Outer",
+                          "Parallel Aware": false,
+                          "Async Capable": false,
+                          "Relation Name": "orders",
+                          "Alias": "o",
+                          "Startup Cost": 0.0,
+                          "Total Cost": 1887.0,
+                          "Plan Rows": 51108,
+                          "Plan Width": 4,
+                          "Actual Startup Time": 0.013,
+                          "Actual Total Time": 6.104,
+                          "Actual Rows": 50407,
+                          "Actual Loops": 1,
+                          "Filter": "(o_orderdate >= '1995-07-01'::date)",
+                          "Rows Removed by Filter": 49593,
+                          "Shared Hit Blocks": 637,
+                          "Shared Read Blocks": 0,
+                          "Shared Dirtied Blocks": 0,
+                          "Shared Written Blocks": 0,
+                          "Local Hit Blocks": 0,
+                          "Local Read Blocks": 0,
+                          "Local Dirtied Blocks": 0,
+                          "Local Written Blocks": 0,
+                          "Temp Read Blocks": 0,
+                          "Temp Written Blocks": 0
+                        },
+                        {
+                          "Node Type": "Hash",
+                          "Parent Relationship": "Inner",
+                          "Parallel Aware": false,
+                          "Async Capable": false,
+                          "Startup Cost": 16.01,
+                          "Total Cost": 16.01,
+                          "Plan Rows": 1001,
+                          "Plan Width": 13,
+                          "Actual Startup Time": 0.18,
+                          "Actual Total Time": 0.18,
+                          "Actual Rows": 1001,
+                          "Actual Loops": 1,
+                          "Hash Buckets": 1024,
+                          "Original Hash Buckets": 1024,
+                          "Hash Batches": 1,
+                          "Original Hash Batches": 1,
+                          "Peak Memory Usage": 55,
+                          "Shared Hit Blocks": 6,
+                          "Shared Read Blocks": 0,
+                          "Shared Dirtied Blocks": 0,
+                          "Shared Written Blocks": 0,
+                          "Local Hit Blocks": 0,
+                          "Local Read Blocks": 0,
+                          "Local Dirtied Blocks": 0,
+                          "Local Written Blocks": 0,
+                          "Temp Read Blocks": 0,
+                          "Temp Written Blocks": 0,
+                          "Plans": [
+                            {
+                              "Node Type": "Seq Scan",
+                              "Parent Relationship": "Outer",
+                              "Parallel Aware": false,
+                              "Async Capable": false,
+                              "Relation Name": "customer",
+                              "Alias": "c",
+                              "Startup Cost": 0.0,
+                              "Total Cost": 16.01,
+                              "Plan Rows": 1001,
+                              "Plan Width": 13,
+                              "Actual Startup Time": 0.004,
+                              "Actual Total Time": 0.075,
+                              "Actual Rows": 1001,
+                              "Actual Loops": 1,
+                              "Shared Hit Blocks": 6,
+                              "Shared Read Blocks": 0,
+                              "Shared Dirtied Blocks": 0,
+                              "Shared Written Blocks": 0,
+                              "Local Hit Blocks": 0,
+                              "Local Read Blocks": 0,
+                              "Local Dirtied Blocks": 0,
+                              "Local Written Blocks": 0,
+                              "Temp Read Blocks": 0,
+                              "Temp Written Blocks": 0
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            "Planning": {
+              "Shared Hit Blocks": 43,
+              "Shared Read Blocks": 0,
+              "Shared Dirtied Blocks": 0,
+              "Shared Written Blocks": 0,
+              "Local Hit Blocks": 0,
+              "Local Read Blocks": 0,
+              "Local Dirtied Blocks": 0,
+              "Local Written Blocks": 0,
+              "Temp Read Blocks": 0,
+              "Temp Written Blocks": 0
+            },
+            "Planning Time": 0.168,
+            "Triggers": [],
+            "Execution Time": 19.081
+          }
+        ]
+      ]
+    ]
+  },
+  {
+    "phase": "after-index",
+    "experiment": 1,
+    "sql": "SELECT COUNT(*) FROM orders WHERE o_custkey = 1",
+    "plan": [
+      [
+        [
+          {
+            "Plan": {
+              "Node Type": "Aggregate",
+              "Strategy": "Plain",
+              "Partial Mode": "Simple",
+              "Parallel Aware": false,
+              "Async Capable": false,
+              "Startup Cost": 2111.82,
+              "Total Cost": 2111.83,
+              "Plan Rows": 1,
+              "Plan Width": 8,
+              "Actual Startup Time": 11.225,
+              "Actual Total Time": 11.225,
+              "Actual Rows": 1,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 637,
+              "Shared Read Blocks": 0,
+              "Shared Dirtied Blocks": 0,
+              "Shared Written Blocks": 0,
+              "Local Hit Blocks": 0,
+              "Local Read Blocks": 0,
+              "Local Dirtied Blocks": 0,
+              "Local Written Blocks": 0,
+              "Temp Read Blocks": 0,
+              "Temp Written Blocks": 0,
+              "Plans": [
+                {
+                  "Node Type": "Seq Scan",
+                  "Parent Relationship": "Outer",
+                  "Parallel Aware": false,
+                  "Async Capable": false,
+                  "Relation Name": "orders",
+                  "Alias": "orders",
+                  "Startup Cost": 0.0,
+                  "Total Cost": 1887.0,
+                  "Plan Rows": 89927,
+                  "Plan Width": 0,
+                  "Actual Startup Time": 0.007,
+                  "Actual Total Time": 6.886,
+                  "Actual Rows": 90000,
+                  "Actual Loops": 1,
+                  "Filter": "(o_custkey = 1)",
+                  "Rows Removed by Filter": 10000,
+                  "Shared Hit Blocks": 637,
+                  "Shared Read Blocks": 0,
+                  "Shared Dirtied Blocks": 0,
+                  "Shared Written Blocks": 0,
+                  "Local Hit Blocks": 0,
+                  "Local Read Blocks": 0,
+                  "Local Dirtied Blocks": 0,
+                  "Local Written Blocks": 0,
+                  "Temp Read Blocks": 0,
+                  "Temp Written Blocks": 0
+                }
+              ]
+            },
+            "Planning": {
+              "Shared Hit Blocks": 10,
+              "Shared Read Blocks": 2,
+              "Shared Dirtied Blocks": 0,
+              "Shared Written Blocks": 0,
+              "Local Hit Blocks": 0,
+              "Local Read Blocks": 0,
+              "Local Dirtied Blocks": 0,
+              "Local Written Blocks": 0,
+              "Temp Read Blocks": 0,
+              "Temp Written Blocks": 0
+            },
+            "Planning Time": 0.14,
+            "Triggers": [],
+            "Execution Time": 11.238
+          }
+        ]
+      ]
+    ]
+  },
+  {
+    "phase": "after-index",
+    "experiment": 2,
+    "sql": "SELECT COUNT(*) FROM orders WHERE o_custkey = 1001",
+    "plan": [
+      [
+        [
+          {
+            "Plan": {
+              "Node Type": "Aggregate",
+              "Strategy": "Plain",
+              "Partial Mode": "Simple",
+              "Parallel Aware": false,
+              "Async Capable": false,
+              "Startup Cost": 24.28,
+              "Total Cost": 24.29,
+              "Plan Rows": 1,
+              "Plan Width": 8,
+              "Actual Startup Time": 0.034,
+              "Actual Total Time": 0.034,
+              "Actual Rows": 1,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 10,
+              "Shared Read Blocks": 2,
+              "Shared Dirtied Blocks": 0,
+              "Shared Written Blocks": 0,
+              "Local Hit Blocks": 0,
+              "Local Read Blocks": 0,
+              "Local Dirtied Blocks": 0,
+              "Local Written Blocks": 0,
+              "Temp Read Blocks": 0,
+              "Temp Written Blocks": 0,
+              "Plans": [
+                {
+                  "Node Type": "Index Only Scan",
+                  "Parent Relationship": "Outer",
+                  "Parallel Aware": false,
+                  "Async Capable": false,
+                  "Scan Direction": "Forward",
+                  "Index Name": "orders_customer_date",
+                  "Relation Name": "orders",
+                  "Alias": "orders",
+                  "Startup Cost": 0.29,
+                  "Total Cost": 24.25,
+                  "Plan Rows": 10,
+                  "Plan Width": 0,
+                  "Actual Startup Time": 0.028,
+                  "Actual Total Time": 0.031,
+                  "Actual Rows": 10,
+                  "Actual Loops": 1,
+                  "Index Cond": "(o_custkey = 1001)",
+                  "Rows Removed by Index Recheck": 0,
+                  "Heap Fetches": 10,
+                  "Shared Hit Blocks": 10,
+                  "Shared Read Blocks": 2,
+                  "Shared Dirtied Blocks": 0,
+                  "Shared Written Blocks": 0,
+                  "Local Hit Blocks": 0,
+                  "Local Read Blocks": 0,
+                  "Local Dirtied Blocks": 0,
+                  "Local Written Blocks": 0,
+                  "Temp Read Blocks": 0,
+                  "Temp Written Blocks": 0
+                }
+              ]
+            },
+            "Planning": {
+              "Shared Hit Blocks": 0,
+              "Shared Read Blocks": 0,
+              "Shared Dirtied Blocks": 0,
+              "Shared Written Blocks": 0,
+              "Local Hit Blocks": 0,
+              "Local Read Blocks": 0,
+              "Local Dirtied Blocks": 0,
+              "Local Written Blocks": 0,
+              "Temp Read Blocks": 0,
+              "Temp Written Blocks": 0
+            },
+            "Planning Time": 0.053,
+            "Triggers": [],
+            "Execution Time": 0.043
+          }
+        ]
+      ]
+    ]
+  },
+  {
+    "phase": "after-index",
+    "experiment": 3,
+    "sql": "SELECT COUNT(*) FROM orders WHERE EXTRACT(YEAR FROM o_orderdate) = 1995",
+    "plan": [
+      [
+        [
+          {
+            "Plan": {
+              "Node Type": "Aggregate",
+              "Strategy": "Plain",
+              "Partial Mode": "Simple",
+              "Parallel Aware": false,
+              "Async Capable": false,
+              "Startup Cost": 2138.25,
+              "Total Cost": 2138.26,
+              "Plan Rows": 1,
+              "Plan Width": 8,
+              "Actual Startup Time": 20.317,
+              "Actual Total Time": 20.317,
+              "Actual Rows": 1,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 637,
+              "Shared Read Blocks": 0,
+              "Shared Dirtied Blocks": 0,
+              "Shared Written Blocks": 0,
+              "Local Hit Blocks": 0,
+              "Local Read Blocks": 0,
+              "Local Dirtied Blocks": 0,
+              "Local Written Blocks": 0,
+              "Temp Read Blocks": 0,
+              "Temp Written Blocks": 0,
+              "Plans": [
+                {
+                  "Node Type": "Seq Scan",
+                  "Parent Relationship": "Outer",
+                  "Parallel Aware": false,
+                  "Async Capable": false,
+                  "Relation Name": "orders",
+                  "Alias": "orders",
+                  "Startup Cost": 0.0,
+                  "Total Cost": 2137.0,
+                  "Plan Rows": 500,
+                  "Plan Width": 0,
+                  "Actual Startup Time": 0.006,
+                  "Actual Total Time": 15.543,
+                  "Actual Rows": 100000,
+                  "Actual Loops": 1,
+                  "Filter": "(EXTRACT(year FROM o_orderdate) = '1995'::numeric)",
+                  "Rows Removed by Filter": 0,
+                  "Shared Hit Blocks": 637,
+                  "Shared Read Blocks": 0,
+                  "Shared Dirtied Blocks": 0,
+                  "Shared Written Blocks": 0,
+                  "Local Hit Blocks": 0,
+                  "Local Read Blocks": 0,
+                  "Local Dirtied Blocks": 0,
+                  "Local Written Blocks": 0,
+                  "Temp Read Blocks": 0,
+                  "Temp Written Blocks": 0
+                }
+              ]
+            },
+            "Planning": {
+              "Shared Hit Blocks": 3,
+              "Shared Read Blocks": 0,
+              "Shared Dirtied Blocks": 0,
+              "Shared Written Blocks": 0,
+              "Local Hit Blocks": 0,
+              "Local Read Blocks": 0,
+              "Local Dirtied Blocks": 0,
+              "Local Written Blocks": 0,
+              "Temp Read Blocks": 0,
+              "Temp Written Blocks": 0
+            },
+            "Planning Time": 0.038,
+            "Triggers": [],
+            "Execution Time": 20.325
+          }
+        ]
+      ]
+    ]
+  },
+  {
+    "phase": "after-index",
+    "experiment": 4,
+    "sql": "SELECT COUNT(*) FROM orders WHERE o_orderdate >= DATE '1995-01-01' AND o_orderdate < DATE '1996-01-01'",
+    "plan": [
+      [
+        [
+          {
+            "Plan": {
+              "Node Type": "Aggregate",
+              "Strategy": "Plain",
+              "Partial Mode": "Simple",
+              "Parallel Aware": false,
+              "Async Capable": false,
+              "Startup Cost": 2387.0,
+              "Total Cost": 2387.01,
+              "Plan Rows": 1,
+              "Plan Width": 8,
+              "Actual Startup Time": 12.868,
+              "Actual Total Time": 12.868,
+              "Actual Rows": 1,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 637,
+              "Shared Read Blocks": 0,
+              "Shared Dirtied Blocks": 0,
+              "Shared Written Blocks": 0,
+              "Local Hit Blocks": 0,
+              "Local Read Blocks": 0,
+              "Local Dirtied Blocks": 0,
+              "Local Written Blocks": 0,
+              "Temp Read Blocks": 0,
+              "Temp Written Blocks": 0,
+              "Plans": [
+                {
+                  "Node Type": "Seq Scan",
+                  "Parent Relationship": "Outer",
+                  "Parallel Aware": false,
+                  "Async Capable": false,
+                  "Relation Name": "orders",
+                  "Alias": "orders",
+                  "Startup Cost": 0.0,
+                  "Total Cost": 2137.0,
+                  "Plan Rows": 100000,
+                  "Plan Width": 0,
+                  "Actual Startup Time": 0.005,
+                  "Actual Total Time": 8.017,
+                  "Actual Rows": 100000,
+                  "Actual Loops": 1,
+                  "Filter": "((o_orderdate >= '1995-01-01'::date) AND (o_orderdate < '1996-01-01'::date))",
+                  "Rows Removed by Filter": 0,
+                  "Shared Hit Blocks": 637,
+                  "Shared Read Blocks": 0,
+                  "Shared Dirtied Blocks": 0,
+                  "Shared Written Blocks": 0,
+                  "Local Hit Blocks": 0,
+                  "Local Read Blocks": 0,
+                  "Local Dirtied Blocks": 0,
+                  "Local Written Blocks": 0,
+                  "Temp Read Blocks": 0,
+                  "Temp Written Blocks": 0
+                }
+              ]
+            },
+            "Planning": {
+              "Shared Hit Blocks": 3,
+              "Shared Read Blocks": 3,
+              "Shared Dirtied Blocks": 0,
+              "Shared Written Blocks": 0,
+              "Local Hit Blocks": 0,
+              "Local Read Blocks": 0,
+              "Local Dirtied Blocks": 0,
+              "Local Written Blocks": 0,
+              "Temp Read Blocks": 0,
+              "Temp Written Blocks": 0
+            },
+            "Planning Time": 0.088,
+            "Triggers": [],
+            "Execution Time": 12.877
+          }
+        ]
+      ]
+    ]
+  },
+  {
+    "phase": "after-index",
+    "experiment": 5,
+    "sql": "SELECT c.c_mktsegment, COUNT(*) AS n\nFROM customer c JOIN orders o ON c.c_custkey = o.o_custkey\nWHERE o.o_orderdate >= DATE '1995-07-01'\nGROUP BY c.c_mktsegment ORDER BY c.c_mktsegment",
+    "plan": [
+      [
+        [
+          {
+            "Plan": {
+              "Node Type": "Sort",
+              "Parallel Aware": false,
+              "Async Capable": false,
+              "Startup Cost": 2279.0,
+              "Total Cost": 2279.01,
+              "Plan Rows": 5,
+              "Plan Width": 17,
+              "Actual Startup Time": 18.342,
+              "Actual Total Time": 18.344,
+              "Actual Rows": 5,
+              "Actual Loops": 1,
+              "Sort Key": [
+                "c.c_mktsegment"
+              ],
+              "Sort Method": "quicksort",
+              "Sort Space Used": 25,
+              "Sort Space Type": "Memory",
+              "Shared Hit Blocks": 602,
+              "Shared Read Blocks": 46,
+              "Shared Dirtied Blocks": 0,
+              "Shared Written Blocks": 0,
+              "Local Hit Blocks": 0,
+              "Local Read Blocks": 0,
+              "Local Dirtied Blocks": 0,
+              "Local Written Blocks": 0,
+              "Temp Read Blocks": 0,
+              "Temp Written Blocks": 0,
+              "Plans": [
+                {
+                  "Node Type": "Aggregate",
+                  "Strategy": "Hashed",
+                  "Partial Mode": "Simple",
+                  "Parent Relationship": "Outer",
+                  "Parallel Aware": false,
+                  "Async Capable": false,
+                  "Startup Cost": 2278.89,
+                  "Total Cost": 2278.94,
+                  "Plan Rows": 5,
+                  "Plan Width": 17,
+                  "Actual Startup Time": 18.337,
+                  "Actual Total Time": 18.339,
+                  "Actual Rows": 5,
+                  "Actual Loops": 1,
+                  "Group Key": [
+                    "c.c_mktsegment"
+                  ],
+                  "Planned Partitions": 0,
+                  "HashAgg Batches": 1,
+                  "Peak Memory Usage": 24,
+                  "Disk Usage": 0,
+                  "Shared Hit Blocks": 602,
+                  "Shared Read Blocks": 46,
+                  "Shared Dirtied Blocks": 0,
+                  "Shared Written Blocks": 0,
+                  "Local Hit Blocks": 0,
+                  "Local Read Blocks": 0,
+                  "Local Dirtied Blocks": 0,
+                  "Local Written Blocks": 0,
+                  "Temp Read Blocks": 0,
+                  "Temp Written Blocks": 0,
+                  "Plans": [
+                    {
+                      "Node Type": "Hash Join",
+                      "Parent Relationship": "Outer",
+                      "Parallel Aware": false,
+                      "Async Capable": false,
+                      "Join Type": "Inner",
+                      "Startup Cost": 615.76,
+                      "Total Cost": 2024.09,
+                      "Plan Rows": 50960,
+                      "Plan Width": 9,
+                      "Actual Startup Time": 1.513,
+                      "Actual Total Time": 12.045,
+                      "Actual Rows": 50407,
+                      "Actual Loops": 1,
+                      "Inner Unique": true,
+                      "Hash Cond": "(o.o_custkey = c.c_custkey)",
+                      "Shared Hit Blocks": 602,
+                      "Shared Read Blocks": 46,
+                      "Shared Dirtied Blocks": 0,
+                      "Shared Written Blocks": 0,
+                      "Local Hit Blocks": 0,
+                      "Local Read Blocks": 0,
+                      "Local Dirtied Blocks": 0,
+                      "Local Written Blocks": 0,
+                      "Temp Read Blocks": 0,
+                      "Temp Written Blocks": 0,
+                      "Plans": [
+                        {
+                          "Node Type": "Bitmap Heap Scan",
+                          "Parent Relationship": "Outer",
+                          "Parallel Aware": false,
+                          "Async Capable": false,
+                          "Relation Name": "orders",
+                          "Alias": "o",
+                          "Startup Cost": 587.23,
+                          "Total Cost": 1861.23,
+                          "Plan Rows": 50960,
+                          "Plan Width": 4,
+                          "Actual Startup Time": 1.306,
+                          "Actual Total Time": 4.742,
+                          "Actual Rows": 50407,
+                          "Actual Loops": 1,
+                          "Recheck Cond": "(o_orderdate >= '1995-07-01'::date)",
+                          "Rows Removed by Index Recheck": 0,
+                          "Exact Heap Blocks": 594,
+                          "Lossy Heap Blocks": 0,
+                          "Shared Hit Blocks": 596,
+                          "Shared Read Blocks": 46,
+                          "Shared Dirtied Blocks": 0,
+                          "Shared Written Blocks": 0,
+                          "Local Hit Blocks": 0,
+                          "Local Read Blocks": 0,
+                          "Local Dirtied Blocks": 0,
+                          "Local Written Blocks": 0,
+                          "Temp Read Blocks": 0,
+                          "Temp Written Blocks": 0,
+                          "Plans": [
+                            {
+                              "Node Type": "Bitmap Index Scan",
+                              "Parent Relationship": "Outer",
+                              "Parallel Aware": false,
+                              "Async Capable": false,
+                              "Index Name": "orders_date",
+                              "Startup Cost": 0.0,
+                              "Total Cost": 574.49,
+                              "Plan Rows": 50960,
+                              "Plan Width": 0,
+                              "Actual Startup Time": 1.24,
+                              "Actual Total Time": 1.24,
+                              "Actual Rows": 50407,
+                              "Actual Loops": 1,
+                              "Index Cond": "(o_orderdate >= '1995-07-01'::date)",
+                              "Shared Hit Blocks": 2,
+                              "Shared Read Blocks": 46,
+                              "Shared Dirtied Blocks": 0,
+                              "Shared Written Blocks": 0,
+                              "Local Hit Blocks": 0,
+                              "Local Read Blocks": 0,
+                              "Local Dirtied Blocks": 0,
+                              "Local Written Blocks": 0,
+                              "Temp Read Blocks": 0,
+                              "Temp Written Blocks": 0
+                            }
+                          ]
+                        },
+                        {
+                          "Node Type": "Hash",
+                          "Parent Relationship": "Inner",
+                          "Parallel Aware": false,
+                          "Async Capable": false,
+                          "Startup Cost": 16.01,
+                          "Total Cost": 16.01,
+                          "Plan Rows": 1001,
+                          "Plan Width": 13,
+                          "Actual Startup Time": 0.204,
+                          "Actual Total Time": 0.204,
+                          "Actual Rows": 1001,
+                          "Actual Loops": 1,
+                          "Hash Buckets": 1024,
+                          "Original Hash Buckets": 1024,
+                          "Hash Batches": 1,
+                          "Original Hash Batches": 1,
+                          "Peak Memory Usage": 55,
+                          "Shared Hit Blocks": 6,
+                          "Shared Read Blocks": 0,
+                          "Shared Dirtied Blocks": 0,
+                          "Shared Written Blocks": 0,
+                          "Local Hit Blocks": 0,
+                          "Local Read Blocks": 0,
+                          "Local Dirtied Blocks": 0,
+                          "Local Written Blocks": 0,
+                          "Temp Read Blocks": 0,
+                          "Temp Written Blocks": 0,
+                          "Plans": [
+                            {
+                              "Node Type": "Seq Scan",
+                              "Parent Relationship": "Outer",
+                              "Parallel Aware": false,
+                              "Async Capable": false,
+                              "Relation Name": "customer",
+                              "Alias": "c",
+                              "Startup Cost": 0.0,
+                              "Total Cost": 16.01,
+                              "Plan Rows": 1001,
+                              "Plan Width": 13,
+                              "Actual Startup Time": 0.006,
+                              "Actual Total Time": 0.077,
+                              "Actual Rows": 1001,
+                              "Actual Loops": 1,
+                              "Shared Hit Blocks": 6,
+                              "Shared Read Blocks": 0,
+                              "Shared Dirtied Blocks": 0,
+                              "Shared Written Blocks": 0,
+                              "Local Hit Blocks": 0,
+                              "Local Read Blocks": 0,
+                              "Local Dirtied Blocks": 0,
+                              "Local Written Blocks": 0,
+                              "Temp Read Blocks": 0,
+                              "Temp Written Blocks": 0
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            "Planning": {
+              "Shared Hit Blocks": 23,
+              "Shared Read Blocks": 1,
+              "Shared Dirtied Blocks": 0,
+              "Shared Written Blocks": 0,
+              "Local Hit Blocks": 0,
+              "Local Read Blocks": 0,
+              "Local Dirtied Blocks": 0,
+              "Local Written Blocks": 0,
+              "Temp Read Blocks": 0,
+              "Temp Written Blocks": 0
+            },
+            "Planning Time": 0.164,
+            "Triggers": [],
+            "Execution Time": 18.364
+          }
+        ]
+      ]
+    ]
+  }
+]

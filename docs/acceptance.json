@@ -1,0 +1,115 @@
+{
+  "checked_at_utc": "2026-10-28T23:38:11.496503+00:00",
+  "reviewed_head": "07bc4597bf32dedf237acfe165d1f84607d3d5d1",
+  "local_compilation": false,
+  "workflows": {
+    "postgres": {
+      "run": {
+        "conclusion": "success",
+        "databaseId": 40729814655,
+        "headSha": "c03c14c7b144b510b86c1bd1f38ace1016ca8319",
+        "status": "completed",
+        "url": "https://github.com/edidada/db_execute_plan/actions/runs/40729814655",
+        "workflowName": "postgres-source-lab"
+      },
+      "accepted": true,
+      "checks": {
+        "upstream_sha_matches_lock": true,
+        "dataset_orders": 100000,
+        "dataset_customers": 1001,
+        "actual_plans": 10,
+        "java_actual_plan_audit": true
+      },
+      "evidence": "docs/evidence/postgres-40729814655"
+    },
+    "mysql": {
+      "run": {
+        "conclusion": "success",
+        "databaseId": 40729814921,
+        "headSha": "c03c14c7b144b510b86c1bd1f38ace1016ca8319",
+        "status": "completed",
+        "url": "https://github.com/edidada/db_execute_plan/actions/runs/40729814921",
+        "workflowName": "mysql-source-lab"
+      },
+      "accepted": true,
+      "checks": {
+        "upstream_sha_matches_lock": true,
+        "dataset_orders": 100000,
+        "dataset_customers": 1001,
+        "actual_plans": 10
+      },
+      "evidence": "docs/evidence/mysql-40729814921"
+    },
+    "duckdb": {
+      "run": {
+        "conclusion": "",
+        "databaseId": 40788597839,
+        "headSha": "07bc4597bf32dedf237acfe165d1f84607d3d5d1",
+        "status": "in_progress",
+        "url": "https://github.com/edidada/db_execute_plan/actions/runs/40788597839",
+        "workflowName": "duckdb-source-lab"
+      },
+      "accepted": false,
+      "reason": "Latest run has not completed successfully"
+    },
+    "datafusion": {
+      "run": {
+        "conclusion": "success",
+        "databaseId": 40731832399,
+        "headSha": "ef0bd7b454c83a52370e45db41b737e74781b1d4",
+        "status": "completed",
+        "url": "https://github.com/edidada/db_execute_plan/actions/runs/40731832399",
+        "workflowName": "datafusion-source-lab"
+      },
+      "accepted": true,
+      "checks": {
+        "upstream_sha_matches_lock": true,
+        "dataset_orders": 100000,
+        "dataset_customers": 1001,
+        "aggregate_groups": 5
+      },
+      "evidence": "docs/evidence/datafusion-40731832399"
+    },
+    "iceberg": {
+      "run": {
+        "conclusion": "success",
+        "databaseId": 40729814907,
+        "headSha": "c03c14c7b144b510b86c1bd1f38ace1016ca8319",
+        "status": "completed",
+        "url": "https://github.com/edidada/db_execute_plan/actions/runs/40729814907",
+        "workflowName": "iceberg-source-lab"
+      },
+      "accepted": true,
+      "checks": {
+        "upstream_sha_matches_lock": true,
+        "dataset_orders": 100000,
+        "dataset_customers": 1001,
+        "snapshots": 2,
+        "old_count": 90000,
+        "current_count": 100000,
+        "final_aqe_plan": true
+      },
+      "evidence": "docs/evidence/iceberg-40729814907"
+    },
+    "java": {
+      "run": {
+        "conclusion": "success",
+        "databaseId": 40729263228,
+        "headSha": "2b800472cb393e99ad7d2929c2f16e4a9ef9c0a3",
+        "status": "completed",
+        "url": "https://github.com/edidada/db_execute_plan/actions/runs/40729263228",
+        "workflowName": "java17-plan-audit"
+      },
+      "accepted": true,
+      "checks": {
+        "maven_tests": 2,
+        "gradle_tests": 2,
+        "test_failures": 0,
+        "shaded_jar": true,
+        "gradle_distribution": true
+      },
+      "evidence": "docs/evidence/java-40729263228"
+    }
+  },
+  "all_accepted": false
+}

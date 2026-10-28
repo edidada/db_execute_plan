@@ -1,0 +1,2 @@
+BUILD SUCCESSFUL in 4m 54s
+Iceberg snapshot and aggregate assertions passed 3.5.6

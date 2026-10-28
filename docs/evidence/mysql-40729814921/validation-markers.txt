@@ -1,0 +1,1 @@
+mysql result assertions passed; inspect artifacts for plan choices

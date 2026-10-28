@@ -15,6 +15,7 @@
 6. [数据来源与生成规则](data/README.md)、[交付与 CI 证据](docs/06-delivery.md)。
 7. [PostgreSQL 真实计划案例](docs/07-postgres-observed-case.md)：热点顺扫、冷点索引、200 倍估计误差及原始 JSON。
 8. [Iceberg 真实快照与 AQE 案例](docs/08-iceberg-observed-case.md)：源码 jar、24 个文件、历史读取及最终执行计划。
+9. [验收报告](docs/09-acceptance.md)：实际 job 结论、产物复核、阻断与修复、验收边界。
 
 ## 软件与版本
 
