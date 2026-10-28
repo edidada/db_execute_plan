@@ -2,6 +2,7 @@
 import ast
 import json
 import re
+import subprocess
 import xml.etree.ElementTree as ET
 from pathlib import Path
 import yaml
@@ -25,4 +26,7 @@ if (root / 'versions.lock.json').exists():
     lock = json.loads((root / 'versions.lock.json').read_text())
     assert len(lock['upstreams']) == 5
     assert all(re.fullmatch('[0-9a-f]{40}', r['commit']) for r in lock['upstreams'])
+    for record in lock['upstreams']:
+        entry = subprocess.check_output(['git', 'ls-files', '--stage', '--', record['path']], cwd=root, text=True).split()
+        assert entry[:2] == ['160000', record['commit']], (record['path'], entry)
 print('PASS: Python AST, Maven XML, workflow YAML, Markdown local links and version lock structure; no compilation')

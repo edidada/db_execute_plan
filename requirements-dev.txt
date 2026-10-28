@@ -1,0 +1,2 @@
+# Static YAML validation only; runtime dependencies are pinned per workflow.
+PyYAML==6.0.2
