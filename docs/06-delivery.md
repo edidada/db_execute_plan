@@ -23,13 +23,13 @@
 
 ## 实时检查快照
 
-检查时间 UTC：`2026-10-28T23:39:35.992555+00:00`。这是该时刻的状态，不承诺之后不变。
+检查时间 UTC：`2026-10-29T00:07:06.610026+00:00`。这是该时刻的状态，不承诺之后不变。
 
 | 工作流 | 最新 run | 源码提交 | 状态 |
 |---|---|---|---|
 | postgres-source-lab | [40729814655](https://github.com/edidada/db_execute_plan/actions/runs/40729814655) | `c03c14c` | success |
 | mysql-source-lab | [40729814921](https://github.com/edidada/db_execute_plan/actions/runs/40729814921) | `c03c14c` | success |
-| duckdb-source-lab | [40788597839](https://github.com/edidada/db_execute_plan/actions/runs/40788597839) | `07bc459` | in_progress |
+| duckdb-source-lab | [40788597839](https://github.com/edidada/db_execute_plan/actions/runs/40788597839) | `07bc459` | success |
 | datafusion-source-lab | [40731832399](https://github.com/edidada/db_execute_plan/actions/runs/40731832399) | `ef0bd7b` | success |
 | iceberg-source-lab | [40729814907](https://github.com/edidada/db_execute_plan/actions/runs/40729814907) | `c03c14c` | success |
 | java17-plan-audit | [40729263228](https://github.com/edidada/db_execute_plan/actions/runs/40729263228) | `2b80047` | success |

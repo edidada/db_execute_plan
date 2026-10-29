@@ -5,7 +5,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 runs = json.loads(subprocess.check_output([
-    'gh', 'run', 'list', '--limit', '100', '--json',
+    'gh', 'run', 'list', '--branch', 'main', '--limit', '100', '--json',
     'databaseId,workflowName,status,conclusion,headSha,url,createdAt,updatedAt'
 ], text=True))
 names = [f'{name}-source-lab' for name in ['postgres', 'mysql', 'duckdb', 'datafusion', 'iceberg']] + ['java17-plan-audit']

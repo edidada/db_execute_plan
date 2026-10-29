@@ -4,7 +4,7 @@
 
 本次验收检查实际 GitHub Actions job conclusion、构建日志、下载产物与结果断言，不在本地编译。
 机器可读结果见 [acceptance.json](acceptance.json)，当前状态见 [交付快照](06-delivery.md)。
-复查命令：`python tools/acceptance_audit.py`；脚本只有在六个最新工作流全部 success 且产物复核通过时才返回 0，排队/运行中/失败均不算通过。
+复查命令：`python tools/acceptance_audit.py`；仅检查 main 分支，run 提交必须是当前 HEAD 的祖先。脚本只有在六个最新工作流全部 success 且产物复核通过时才返回 0，排队/运行中/失败均不算通过。
 它会核对上游 SHA 与 lock、产物内的父仓库 SHA、数据量、实际计划、SQL 结果及测试报告，并保存精简原始证据。
 
 ## 已完成的产物复核
@@ -13,6 +13,7 @@
 |---|---|---|
 | PostgreSQL 17.6 | [40729814655](https://github.com/edidada/db_execute_plan/actions/runs/40729814655) | 源码构建、启动、十次 SQL 断言、十份实际 JSON 计划及 Java 对真实计划的诊断 |
 | MySQL 8.4.6 | [40729814921](https://github.com/edidada/db_execute_plan/actions/runs/40729814921) | 源码 mysqld、十次 SQL 断言与十份 EXPLAIN ANALYZE 计划 |
+| DuckDB v1.3.2 源码 | [40788597839](https://github.com/edidada/db_execute_plan/actions/runs/40788597839) | LLD 成功链接源码 CLI、十次 SQL 断言与实际计划、Parquet 文件及过滤计划；版本标签显示限制见下文 |
 | DataFusion 49.0.2 | [40731832399](https://github.com/edidada/db_execute_plan/actions/runs/40731832399) | Cargo release 编译、五组聚合结果与 oracle 完全一致、带 output_rows 等指标的物理计划 |
 | Iceberg 1.9.2 源码 | [40729814907](https://github.com/edidada/db_execute_plan/actions/runs/40729814907) | source runtime jar、两个快照、90k/100k 行回溯断言、共享聚合与最终 AQE 计划 |
 | Java 17 Maven / Gradle | [40729263228](https://github.com/edidada/db_execute_plan/actions/runs/40729263228) | 两种构建各两项测试，无失败/错误；shaded jar 中含主类，Gradle application distribution 存在 |
@@ -29,7 +30,16 @@
 修复提交 `07bc459` 为 shell 显式使用 LLD，并记录链接器版本；上游源码版本与实验数据不变。
 LLD 与 GNU ld 对归档反向引用的处理差异见 [LLVM 官方说明](https://lld.llvm.org/ELF/warn_backrefs.html)。
 
-修复后 run：[40788597839](https://github.com/edidada/db_execute_plan/actions/runs/40788597839)。在它完成源码构建、SQL 断言及 Parquet 实验前，整体不能标为通过；最终结论以机器报告及下方结论为准。
+修复后 run：[40788597839](https://github.com/edidada/db_execute_plan/actions/runs/40788597839) **success**，已完成源码构建、十次 SQL 断言及 Parquet 实验，产物复核通过。实际使用 Ubuntu LLD 18.1.3，1672/1672 链接步骤成功。
+
+原始证据见 [duckdb-40788597839](evidence/duckdb-40788597839/)。Parquet 过滤计划输出 8,485 行，Total Files Read 为 1；这不等于测量了跳过多少 row group 或物理磁盘读取量。
+
+### 版本标识限制
+
+该源码构建 CLI 的 `--version` 实际显示 **`v0.0.1 (Unknown Version) 0b83e5d2`**，不是整洁的发行版版本号。
+浅检出缺少发布 tag 元数据，使 [上游版本生成逻辑](https://github.com/duckdb/duckdb/blob/v1.3.2/CMakeLists.txt) 回退；实际源码提交 `0b83e5d2f68bc02dfefde74b846bd039f078affa` 与官方 `v1.3.2`、gitlink、lock 和 CI 产物记录完全一致。
+本次按固定源码身份验收，不把该 CLI 冒充已正确标记版本的官方发行二进制。机器报告单列 `release_label_matches_tag=false`，保留这一非功能限制。
+Iceberg 的源码 jar 使用 commit 作为构建版本标签，也已在 [实测案例](08-iceberg-observed-case.md) 说明。
 
 ## 实测结果的重要差异
 
@@ -63,4 +73,5 @@ DataFusion 的 CSV 扫描读取 100,000 行，过滤后 50,407；HashJoinExec �
 
 ## 最终结论
 
-当前已确认五个工作流的产物通过复核，DuckDB 修复后仍待最终验证。整体暂不通过；不能将已提交修复或正在运行标为完成验收。
+**当前教学实验范围验收通过。**六个 main 分支工作流均为 success，下载产物复核全部通过；Java 的 Maven、Gradle 两个 job 均成功。
+本地未编译。DuckDB 的非发行版版本显示限制、未实测的知识点及生产范围均已明确记录；不扩大为所有理论、商业数据库和生产能力全部验收通过。

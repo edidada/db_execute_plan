@@ -21,9 +21,10 @@ def gh(*args):
 names = ['postgres', 'mysql', 'duckdb', 'datafusion', 'iceberg', 'java']
 workflow_names = {n: n + '-source-lab' for n in names[:-1]}
 workflow_names['java'] = 'java17-plan-audit'
-runs = json.loads(gh('run', 'list', '--limit', '100', '--json', 'databaseId,workflowName,status,conclusion,headSha,url'))
+runs = json.loads(gh('run', 'list', '--branch', 'main', '--limit', '100', '--json', 'databaseId,workflowName,status,conclusion,headSha,url'))
 lock = {r['name']: r for r in json.loads(Path('versions.lock.json').read_text())['upstreams']}
 report = {'checked_at_utc': datetime.now(timezone.utc).isoformat(),
+          'branch': 'main',
           'reviewed_head': subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip(),
           'local_compilation': False, 'workflows': {}}
 
@@ -33,6 +34,7 @@ def verify(name):
     if run['status'] != 'completed' or run['conclusion'] != 'success':
         result['reason'] = 'Latest run has not completed successfully'
         return name, result
+    subprocess.run(['git', 'merge-base', '--is-ancestor', run['headSha'], 'HEAD'], check=True)
     details = json.loads(gh('run', 'view', str(run['databaseId']), '--json', 'jobs'))
     assert details['jobs'] and all(j['conclusion'] == 'success' for j in details['jobs']), details
     dest = Path('artifacts/acceptance') / name / str(run['databaseId'])
@@ -68,6 +70,9 @@ def verify(name):
         expected = [[k, v] for k, v in sorted(manifest['expected'].items())]
         log = (root / 'build-and-demo.log').read_text(encoding='utf-8')
         checks = {'upstream_sha_matches_lock': True, 'dataset_orders': 100000, 'dataset_customers': 1001}
+        checks['source_tag'] = lock[name]['tag']
+        if (root / 'server-version.txt').exists():
+            checks['reported_version'] = (root / 'server-version.txt').read_text().strip()
         if name in {'postgres', 'mysql', 'duckdb'}:
             assert f'{name} result assertions passed' in log
             plans = json.loads((root / f'{name}-plans.json').read_text())
@@ -85,6 +90,9 @@ def verify(name):
                 assert (root / 'duckdb-source-cli.txt').read_text().strip().splitlines()[-1] == '100000'
                 assert (root / 'duckdb-parquet-plan.txt').stat().st_size > 0
                 checks['parquet_and_source_cli'] = True
+                # A shallow checkout may lack Git tags: do not invent a clean
+                # release label. Source identity is verified by the gitlink SHA.
+                checks['release_label_matches_tag'] = 'v1.3.2' in checks['reported_version']
         elif name == 'datafusion':
             assert 'DataFusion result assertions passed' in log
             rows = list(csv.reader(io.StringIO((root / 'datafusion-result.csv').read_text())))

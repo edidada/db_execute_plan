@@ -1,6 +1,7 @@
 {
-  "checked_at_utc": "2026-10-28T23:38:11.496503+00:00",
-  "reviewed_head": "07bc4597bf32dedf237acfe165d1f84607d3d5d1",
+  "checked_at_utc": "2026-10-29T00:08:11.205139+00:00",
+  "branch": "main",
+  "reviewed_head": "d3bee799ebeb3370aa9a8838f79bc825d18076ae",
   "local_compilation": false,
   "workflows": {
     "postgres": {
@@ -17,6 +18,8 @@
         "upstream_sha_matches_lock": true,
         "dataset_orders": 100000,
         "dataset_customers": 1001,
+        "source_tag": "REL_17_6",
+        "reported_version": "postgres (PostgreSQL) 17.6",
         "actual_plans": 10,
         "java_actual_plan_audit": true
       },
@@ -36,21 +39,33 @@
         "upstream_sha_matches_lock": true,
         "dataset_orders": 100000,
         "dataset_customers": 1001,
+        "source_tag": "mysql-8.4.6",
+        "reported_version": "/home/runner/work/_temp/mysql-build/runtime_output_directory/mysqld  Ver 8.4.6 for Linux on x86_64 (Source distribution)",
         "actual_plans": 10
       },
       "evidence": "docs/evidence/mysql-40729814921"
     },
     "duckdb": {
       "run": {
-        "conclusion": "",
+        "conclusion": "success",
         "databaseId": 40788597839,
         "headSha": "07bc4597bf32dedf237acfe165d1f84607d3d5d1",
-        "status": "in_progress",
+        "status": "completed",
         "url": "https://github.com/edidada/db_execute_plan/actions/runs/40788597839",
         "workflowName": "duckdb-source-lab"
       },
-      "accepted": false,
-      "reason": "Latest run has not completed successfully"
+      "accepted": true,
+      "checks": {
+        "upstream_sha_matches_lock": true,
+        "dataset_orders": 100000,
+        "dataset_customers": 1001,
+        "source_tag": "v1.3.2",
+        "reported_version": "v0.0.1 (Unknown Version) 0b83e5d2",
+        "actual_plans": 10,
+        "parquet_and_source_cli": true,
+        "release_label_matches_tag": false
+      },
+      "evidence": "docs/evidence/duckdb-40788597839"
     },
     "datafusion": {
       "run": {
@@ -66,6 +81,8 @@
         "upstream_sha_matches_lock": true,
         "dataset_orders": 100000,
         "dataset_customers": 1001,
+        "source_tag": "49.0.2",
+        "reported_version": "datafusion-cli 49.0.2",
         "aggregate_groups": 5
       },
       "evidence": "docs/evidence/datafusion-40731832399"
@@ -84,6 +101,7 @@
         "upstream_sha_matches_lock": true,
         "dataset_orders": 100000,
         "dataset_customers": 1001,
+        "source_tag": "apache-iceberg-1.9.2",
         "snapshots": 2,
         "old_count": 90000,
         "current_count": 100000,
@@ -111,5 +129,5 @@
       "evidence": "docs/evidence/java-40729263228"
     }
   },
-  "all_accepted": false
+  "all_accepted": true
 }
