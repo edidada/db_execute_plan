@@ -6,6 +6,11 @@ JOIN (
         SELECT o.o_custkey
         FROM orders AS o
         WHERE o.o_orderdate >= DATE '1995-07-01'
+          AND o.o_orderdate < DATE '1995-10-01'
+        UNION ALL
+        SELECT o.o_custkey
+        FROM orders AS o
+        WHERE o.o_orderdate >= DATE '1995-10-01'
     ) AS filtered
     GROUP BY filtered.o_custkey
 ) AS per_customer ON per_customer.o_custkey = c.c_custkey

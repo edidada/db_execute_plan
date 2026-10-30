@@ -8,7 +8,7 @@
 * `ci/mysql-source-trace.sh`：初始化官方固定 submodule，安装依赖、编译 Debug mysqld、启动隔离 socket 实例、生成数据、运行实验、打印日志摘要和关闭服务。
 * `sql/mysql-source-trace/schema.sql`：InnoDB 建库建表。
 * `sql/mysql-source-trace/indexes.sql`：第二阶段建索引及更新统计。
-* `sql/mysql-source-trace/query.sql`：两层嵌套派生表子查询、JOIN、日期过滤、GROUP BY、ORDER BY 查询。
+* `sql/mysql-source-trace/query.sql`：两层嵌套派生表子查询、UNION ALL、JOIN、日期过滤、GROUP BY、ORDER BY 查询。
 * `trace-on.sql / trace-read.sql / trace-off.sql`：开启、读取、关闭 optimizer_trace。
 * `tools/mysql_source_trace.py`：导入固定 CSV，在同一连接采集 trace、实际计划、原生 DBUG 并断言结果。数据结构源自 TPC-H 子集，合成数据与既有实验一致。
 
@@ -16,14 +16,16 @@
 
 ### 嵌套子查询观察点
 
-目标 SQL 包含三个查询块：最内层过滤订单日期，中间层按客户聚合订单数，最外层联接客户并按分群求和。
-最内层简单派生表允许优化器合并（Derived Merge）；中间层含 GROUP BY，不能按普通派生表合并处理，可观察其物化（Materialization）及读取路径。
+目标 SQL 包含四个 SELECT 查询块：最内层两个 SELECT 用 UNION ALL 拼接日期区间，中间层按客户聚合订单数，最外层联接客户并按分群求和。
+两个分支分别为 `[1995-07-01,1995-10-01)` 和 `[1995-10-01,+∞)`，互不重叠且并集等于原始过滤范围；第二分支没有人为增加上界，保持原 SQL 语义。
+使用 UNION ALL 保留每一条订单的贡献；若直接换成 UNION，因投影只有客户编号，同一客户的多笔订单会被去重，COUNT 结果将改变。
+含 UNION ALL 的派生表与含 GROUP BY 的派生表均不能按普通简单派生表合并；观察其物化（Materialization）、集合运算和读取路径。
 是否延迟物化、是否创建临时索引、具体联接顺序均以实际 trace/计划为准，不强制计划形状。
 SQL 有嵌套不代表执行器一定逐行重新执行子查询；这正是需要用日志验证的区别。
 
 中间层每客户 COUNT(*)、外层 SUM(order_count)，与原先直接按分群 COUNT(*) 等价：customer 主键保证联接不放大行数，COUNT 值非 NULL，原始日期过滤未变。
 因此仍使用现有独立 oracle 检查五组结果，总计 50,407；不改预期结果以迁就新 SQL。
-重点比较 trace 的各 select#、派生表合并/物化决策，以及实际计划的聚合与临时结果读取节点。Debug 构建日志的性能不用于与原始 SQL 公平排名。
+重点比较 trace 的各 select#、集合运算分支、派生表物化决策，以及实际计划的聚合与临时结果读取节点。UNION ALL 不要求去重，但也不能据此保证整个查询没有临时表或排序。Debug 构建日志的性能不用于与原始 SQL 公平排名。
 
 构建开关是 `CMAKE_BUILD_TYPE=Debug`、`WITH_DEBUG=ON`。仅在隔离 Debug 实例的数据装载完成后，为实验连接设置 `SET SESSION debug=...`。
 控制串由脚本生成并保存在 artifact 的 `before-index-debug-on.sql` / `after-index-debug-on.sql`：`d,ast` 启用上游原生 AST/Query plan 埋点，`t` 记录已有函数进出，`F/L` 文件/行号，`f` 限定函数，`O` 输出服务端日志文件。
