@@ -1,0 +1,26 @@
+name: mysql-debug-source-trace
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['ci/mysql-source-trace.sh', 'tools/mysql_source_trace.py', 'sql/mysql-source-trace/**', '.github/workflows/mysql-source-trace.yml']
+permissions:
+  contents: read
+jobs:
+  debug-trace:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Build pinned MySQL, create tables and capture source logs
+        run: bash ci/mysql-source-trace.sh
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: mysql-debug-source-trace-${{ github.run_id }}
+          path: artifacts/mysql-source-trace/
+          retention-days: 30
+          if-no-files-found: error
