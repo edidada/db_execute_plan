@@ -45,15 +45,15 @@ try:
         # Native ast keyword prints query tree and PrintQueryPlan; t traces
         # existing DBUG_TRACE entries. Enable only after loading the dataset.
         debug_path = str((out / f'{phase}.dbug').resolve())
+        # ':' separates DBUG options: never embed C++ 'Class::method' names.
+        # mysys/dbug.cc supports glob patterns for its function filters.
         functions = ','.join(['dispatch_sql_command', 'parse_sql', 'mysql_execute_command',
-                              'Sql_cmd_dml::prepare', 'Sql_cmd_dml::execute',
-                              'Query_expression::prepare', 'Query_block::prepare',
-                              'Query_expression::optimize', 'JOIN::optimize',
-                              'JOIN::make_join_plan', 'Optimize_table_order::choose_table_order',
-                              'Query_expression::execute'])
+                              '*prepare', '*execute', '*optimize', '*make_join_plan',
+                              '*choose_table_order'])
         debug = f'd,ast:t:i:F:L:f,{functions}:O,{debug_path}'
         (out / f'{phase}-debug-on.sql').write_text("SET SESSION debug='" + debug + "';\n")
         run('SET SESSION debug=%s' % ("'" + debug + "'"))
+        (out / f'{phase}-debug-effective.json').write_text(json.dumps(run('SELECT @@session.debug'), indent=2))
         batch('trace-on.sql')
         rows = run(query)
         trace_rows = run(file_sql('trace-read.sql'))

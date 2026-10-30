@@ -29,6 +29,7 @@ SQL 有嵌套不代表执行器一定逐行重新执行子查询；这正是需�
 
 构建开关是 `CMAKE_BUILD_TYPE=Debug`、`WITH_DEBUG=ON`。仅在隔离 Debug 实例的数据装载完成后，为实验连接设置 `SET SESSION debug=...`。
 控制串由脚本生成并保存在 artifact 的 `before-index-debug-on.sql` / `after-index-debug-on.sql`：`d,ast` 启用上游原生 AST/Query plan 埋点，`t` 记录已有函数进出，`F/L` 文件/行号，`f` 限定函数，`O` 输出服务端日志文件。
+DBUG 使用冒号分隔选项，函数过滤不能直接嵌入 `JOIN::optimize` 之类带 `::` 的名称；采用 `*optimize`、`*choose_table_order` 等 glob 模式。实际生效控制串另存 `*-debug-effective.json`。
 连接只追踪指定准备/优化/执行入口，避免每个 InnoDB 行访问的海量 trace。`i` 是 PID，连接编号另存 session.json。
 
 同时开启 `optimizer_trace='enabled=on,one_line=off'`，运行查询后立即读取 INFORMATION_SCHEMA.OPTIMIZER_TRACE，检查没有截断或权限缺失，然后关闭。
