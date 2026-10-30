@@ -2,7 +2,7 @@ name: mysql-source-lab
 on:
   push:
     branches: [main]
-    paths: ['upstream/mysql', '.gitmodules', 'ci/build-mysql.sh', 'tools/generate_data.py', 'sql/**', 'data/**', '.github/workflows/mysql.yml', 'tools/relational_demo.py']
+    paths: ['upstream/mysql', '.gitmodules', 'shell_scripts/build-mysql.sh', 'tools/generate_data.py', 'sql/**', 'data/**', '.github/workflows/mysql.yml', 'tools/relational_demo.py']
   workflow_dispatch:
 permissions:
   contents: read
@@ -38,7 +38,7 @@ jobs:
         shell: bash
         run: |
           set -o pipefail
-          bash ci/build-mysql.sh 2>&1 | tee artifacts/build-and-demo.log
+          bash shell_scripts/build-mysql.sh 2>&1 | tee artifacts/build-and-demo.log
       - uses: actions/upload-artifact@v4
         if: always()
         with:

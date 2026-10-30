@@ -2,7 +2,7 @@ name: postgres-source-lab
 on:
   push:
     branches: [main]
-    paths: ['upstream/postgres', '.gitmodules', 'ci/build-postgres.sh', 'tools/generate_data.py', 'sql/**', 'data/**', '.github/workflows/postgres.yml', 'tools/relational_demo.py', 'plan-audit/**', 'pom.xml']
+    paths: ['upstream/postgres', '.gitmodules', 'shell_scripts/build-postgres.sh', 'tools/generate_data.py', 'sql/**', 'data/**', '.github/workflows/postgres.yml', 'tools/relational_demo.py', 'plan-audit/**', 'pom.xml']
   workflow_dispatch:
 permissions:
   contents: read
@@ -42,7 +42,7 @@ jobs:
         shell: bash
         run: |
           set -o pipefail
-          bash ci/build-postgres.sh 2>&1 | tee artifacts/build-and-demo.log
+          bash shell_scripts/build-postgres.sh 2>&1 | tee artifacts/build-and-demo.log
       - name: Audit actual PostgreSQL JSON with Java 17
         run: |
           mvn -B -ntp verify

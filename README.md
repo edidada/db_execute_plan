@@ -62,7 +62,7 @@ gh run download <RUN_ID> --dir artifacts/<RUN_ID>
 
 每软件一份 YAML，按路径触发，也支持手动运行。各工作流编译固定源码，并实际运行其产物；Iceberg 为源码 runtime jar + 发行版 Spark 3.5.6。
 Java 工具使用 Maven 多模块为主，同源 Gradle 8.14.3 构建；父 POM 明确 `maven.compiler.release=17`。
-本项目编译方法在 Actions YAML/`ci/` 中可审阅，不要求本地先编译。
+本项目编译方法在 Actions YAML/`shell_scripts/` 中可审阅，不要求本地先编译。
 
 ## 三个先纠正的误区
 

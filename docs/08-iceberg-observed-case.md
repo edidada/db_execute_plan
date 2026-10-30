@@ -45,7 +45,7 @@ Iceberg 扫描仅请求 `o_custkey,o_orderdate` 两列，能够与 K1 的投影�
 ## 上游构建集成的教训
 
 首轮 [40729263445](https://github.com/edidada/db_execute_plan/actions/runs/40729263445) 失败于 generateGitProperties，原因是 submodule 的 `.git` 是指向真实 Git 目录的文件。
-`ci/iceberg-submodule.init.gradle` 使用 `git rev-parse --absolute-git-dir` 的结果配置插件，保留真实 commit provenance，再完整重跑通过。
+`shell_scripts/iceberg-submodule.init.gradle` 使用 `git rev-parse --absolute-git-dir` 的结果配置插件，保留真实 commit provenance，再完整重跑通过。
 该修复针对构建目录解析，不是更改 Iceberg 内核算法。
 
 机制与文献见 [K6/K7](01-optimizer-and-execution.md)、[E5](03-experiments.md)、[D4/D5/P6](05-references.md)。

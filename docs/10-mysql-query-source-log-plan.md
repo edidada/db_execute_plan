@@ -1303,7 +1303,7 @@ trace 的键取决于实际走到的分支，不能要求每条 SQL 都出现所
 
 ### 第三步：Debug 构建观察原生 DBUG
 
-当前 `ci/build-mysql.sh` 使用 `WITH_DEBUG=OFF`；不能只加 `--debug` 就声称获得原生调用日志。
+当前 `shell_scripts/build-mysql.sh` 使用 `WITH_DEBUG=OFF`；不能只加 `--debug` 就声称获得原生调用日志。
 拟增加单独、手动触发的 MySQL 源码调试工作流，使用 `CMAKE_BUILD_TYPE=Debug`、`WITH_DEBUG=ON`，保留现有 Release 验收，不覆盖其结论。
 隔离实例启动后，先完成数据装载，再只对目标连接开启调试，避免记录初始化与 100k 行装载。
 

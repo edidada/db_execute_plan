@@ -2,7 +2,7 @@ name: datafusion-source-lab
 on:
   push:
     branches: [main]
-    paths: ['upstream/datafusion', '.gitmodules', 'ci/build-datafusion.sh', 'tools/generate_data.py', 'sql/**', 'data/**', '.github/workflows/datafusion.yml', 'tools/datafusion_demo.py']
+    paths: ['upstream/datafusion', '.gitmodules', 'shell_scripts/build-datafusion.sh', 'tools/generate_data.py', 'sql/**', 'data/**', '.github/workflows/datafusion.yml', 'tools/datafusion_demo.py']
   workflow_dispatch:
 permissions:
   contents: read
@@ -42,7 +42,7 @@ jobs:
         shell: bash
         run: |
           set -o pipefail
-          bash ci/build-datafusion.sh 2>&1 | tee artifacts/build-and-demo.log
+          bash shell_scripts/build-datafusion.sh 2>&1 | tee artifacts/build-and-demo.log
       - uses: actions/upload-artifact@v4
         if: always()
         with:

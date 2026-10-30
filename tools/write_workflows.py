@@ -9,7 +9,7 @@ software = {
     'iceberg': ('sudo apt-get update && sudo apt-get install -y build-essential', 'python -m pip install pyspark==3.5.6'),
 }
 for name, (deps, pip) in software.items():
-    paths = [f'upstream/{name}', '.gitmodules', f'ci/build-{name}.sh', 'tools/generate_data.py', 'sql/**', 'data/**', f'.github/workflows/{name}.yml']
+    paths = [f'upstream/{name}', '.gitmodules', f'shell_scripts/build-{name}.sh', 'tools/generate_data.py', 'sql/**', 'data/**', f'.github/workflows/{name}.yml']
     if name in {'postgres', 'mysql', 'duckdb'}:
         paths.append('tools/relational_demo.py')
     else:
@@ -17,7 +17,7 @@ for name, (deps, pip) in software.items():
     if name == 'postgres':
         paths.extend(['plan-audit/**', 'pom.xml'])
     if name == 'iceberg':
-        paths.append('ci/iceberg-submodule.init.gradle')
+        paths.append('shell_scripts/iceberg-submodule.init.gradle')
     extra = ''
     if name == 'datafusion':
         extra = '''      - name: Rust 1.88.0
@@ -78,7 +78,7 @@ jobs:
         shell: bash
         run: |
           set -o pipefail
-          bash ci/build-{name}.sh 2>&1 | tee artifacts/build-and-demo.log
+          bash shell_scripts/build-{name}.sh 2>&1 | tee artifacts/build-and-demo.log
 {audit}      - uses: actions/upload-artifact@v4
         if: always()
         with:

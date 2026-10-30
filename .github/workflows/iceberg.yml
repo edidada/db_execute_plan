@@ -2,7 +2,7 @@ name: iceberg-source-lab
 on:
   push:
     branches: [main]
-    paths: ['upstream/iceberg', '.gitmodules', 'ci/build-iceberg.sh', 'tools/generate_data.py', 'sql/**', 'data/**', '.github/workflows/iceberg.yml', 'tools/iceberg_demo.py', 'ci/iceberg-submodule.init.gradle']
+    paths: ['upstream/iceberg', '.gitmodules', 'shell_scripts/build-iceberg.sh', 'tools/generate_data.py', 'sql/**', 'data/**', '.github/workflows/iceberg.yml', 'tools/iceberg_demo.py', 'shell_scripts/iceberg-submodule.init.gradle']
   workflow_dispatch:
 permissions:
   contents: read
@@ -42,7 +42,7 @@ jobs:
         shell: bash
         run: |
           set -o pipefail
-          bash ci/build-iceberg.sh 2>&1 | tee artifacts/build-and-demo.log
+          bash shell_scripts/build-iceberg.sh 2>&1 | tee artifacts/build-and-demo.log
       - uses: actions/upload-artifact@v4
         if: always()
         with:
