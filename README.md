@@ -2,7 +2,7 @@
 
 以固定版本源码、公开表结构、可复现实验研究 **Execution Plan（执行计划）**：解释优化器为什么这样选择，再用实际行数、结果断言和原始计划验证。
 
-本地不编译；源码构建、引擎运行和实验验收放在 GitHub Actions。`oatp` 按 OLTP（Online Transaction Processing，在线事务处理）理解。
+源码构建、引擎运行和实验验收放在 GitHub Actions。`oatp` 按 OLTP（Online Transaction Processing，在线事务处理）理解。
 原始笔记完整保留在 [original-notes.md](docs/original-notes.md)，其中简化表述以新章节的限定和纠正为准。
 
 ## 阅读顺序
