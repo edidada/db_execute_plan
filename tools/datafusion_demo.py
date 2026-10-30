@@ -1,4 +1,5 @@
 import csv
+import os
 import json
 import subprocess
 from pathlib import Path
@@ -12,7 +13,7 @@ CREATE EXTERNAL TABLE orders(o_orderkey BIGINT,o_custkey BIGINT,o_orderdate DATE
 query = "SELECT c_mktsegment,COUNT(*) AS n FROM customer JOIN orders ON c_custkey=o_custkey WHERE o_orderdate >= DATE '1995-07-01' GROUP BY c_mktsegment ORDER BY c_mktsegment"
 (out / 'datafusion.sql').write_text(sql + 'EXPLAIN ANALYZE ' + query + ';\n' + query + ';\n')
 (out / 'datafusion-result.sql').write_text(sql + query + ';\n')
-binary = 'upstream/datafusion/target/release/datafusion-cli'
+binary = os.environ.get('PLANLAB_DATAFUSION_CLI', 'upstream/datafusion/target/release/datafusion-cli')
 plan = subprocess.run([binary, '--file', str(out / 'datafusion.sql')], text=True, capture_output=True, check=True)
 (out / 'datafusion-plan.txt').write_text(plan.stdout + plan.stderr)
 result = subprocess.run([binary, '--quiet', '--format', 'csv', '--file', str(out / 'datafusion-result.sql')], text=True, capture_output=True, check=True)

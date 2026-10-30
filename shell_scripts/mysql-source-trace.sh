@@ -1,30 +1,23 @@
 #!/usr/bin/env bash
 set -euo pipefail
-mkdir -p artifacts/mysql-source-trace
-out="$GITHUB_WORKSPACE/artifacts/mysql-source-trace"
-exec > >(tee "$out/build-and-demo.log") 2>&1
-set -x
-sudo apt-get update
-sudo apt-get install -y build-essential cmake ninja-build bison pkg-config libssl-dev libncurses-dev libtirpc-dev libudev-dev libaio-dev
-python -m pip install PyMySQL==1.1.1
-git submodule update --init --depth 1 upstream/mysql
-git rev-parse HEAD > "$out/repository-sha.txt"
-git -C upstream/mysql rev-parse HEAD > "$out/upstream-sha.txt"
+source "$(dirname "${BASH_SOURCE[0]}")/common.sh"
+lab_init mysql-source-trace "$@"
+out="$LAB_OUT"
+export PLANLAB_TRACE_OUT="$LAB_OUT"
 cp -r sql/mysql-source-trace "$out/sql"
-python tools/generate_data.py | tee "$out/data-manifest.json"
-build="$RUNNER_TEMP/mysql-trace-build"
-data="$RUNNER_TEMP/mysql-trace-data"
-export PLANLAB_SOCKET="$RUNNER_TEMP/mysql-trace.sock"
+build="$LAB_WORK/mysql-trace-build"
+data="$LAB_WORK/mysql-trace-data"
+export PLANLAB_SOCKET="$LAB_WORK/mysql-trace.sock"
 cmake -S upstream/mysql -B "$build" -G Ninja \
   -DCMAKE_BUILD_TYPE=Debug -DWITH_DEBUG=ON -DWITH_UNIT_TESTS=OFF \
   -DWITH_ROUTER=OFF -DWITH_NDB=OFF -DWITH_MYSQLX=OFF -DWITH_SSL=system
 cp "$build/CMakeCache.txt" "$out/CMakeCache.txt"
-cmake --build "$build" --target mysqld mysql mysqladmin --parallel 2
+cmake --build "$build" --target mysqld mysql mysqladmin --parallel "$LAB_JOBS"
 binary="$build/runtime_output_directory"
 "$binary/mysqld" --version | tee "$out/server-version.txt"
 "$binary/mysqld" --no-defaults --initialize-insecure --basedir="$build" --datadir="$data"
 "$binary/mysqld" --no-defaults --basedir="$build" --datadir="$data" \
-  --skip-networking --socket="$PLANLAB_SOCKET" --pid-file="$RUNNER_TEMP/mysql-trace.pid" \
+  --skip-networking --socket="$PLANLAB_SOCKET" --pid-file="$LAB_WORK/mysql-trace.pid" \
   --log-error="$out/mysql-error.log" &
 server_pid=$!
 cleanup() {

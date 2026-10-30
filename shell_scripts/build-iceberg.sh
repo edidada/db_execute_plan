@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
-set -euxo pipefail
+set -euo pipefail
+source "$(dirname "${BASH_SOURCE[0]}")/common.sh"
+lab_init iceberg "$@"
 cd upstream/iceberg
 export ICEBERG_GIT_DIR
 ICEBERG_GIT_DIR="$(git rev-parse --absolute-git-dir)"
 chmod +x gradlew
-./gradlew --init-script ../../shell_scripts/iceberg-submodule.init.gradle --no-daemon --max-workers=2 -DsparkVersions=3.5 -DflinkVersions= -DscalaVersion=2.12 \
+./gradlew --init-script ../../shell_scripts/iceberg-submodule.init.gradle --no-daemon --max-workers="$LAB_JOBS" -DsparkVersions=3.5 -DflinkVersions= -DscalaVersion=2.12 \
   :iceberg-spark:iceberg-spark-runtime-3.5_2.12:shadowJar -x test
 cd ../..
 mapfile -t jars < <(find upstream/iceberg/spark/v3.5/spark-runtime/build/libs -name '*.jar' ! -name '*sources*' ! -name '*javadoc*')

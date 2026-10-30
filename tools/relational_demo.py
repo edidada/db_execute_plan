@@ -32,10 +32,11 @@ if engine == 'duckdb':
 else:
     if engine == 'postgres':
         import psycopg
-        con = psycopg.connect('host=localhost port=5432 dbname=planlab user=runner', autocommit=True)
+        con = psycopg.connect(host=os.environ.get('PLANLAB_PG_HOST', 'localhost'), port=5432, dbname='planlab', user='runner', autocommit=True)
     else:
         import pymysql
-        con = pymysql.connect(host='127.0.0.1', user='root', database='planlab', autocommit=True)
+        connection = {'unix_socket': os.environ['PLANLAB_SOCKET']} if os.environ.get('PLANLAB_SOCKET') else {'host': '127.0.0.1'}
+        con = pymysql.connect(**connection, user='root', database='planlab', autocommit=True)
     cur = con.cursor()
     cur.execute('CREATE TABLE customer(c_custkey INTEGER PRIMARY KEY,c_mktsegment VARCHAR(20))')
     cur.execute('CREATE TABLE orders(o_orderkey INTEGER PRIMARY KEY,o_custkey INTEGER,o_orderdate DATE,o_totalprice DECIMAL(12,2),o_orderstatus CHAR(1))')

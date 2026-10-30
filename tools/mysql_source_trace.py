@@ -1,11 +1,11 @@
-"""Only run against the isolated source-built Debug server in CI."""
+"""Run against the isolated source-built Debug server on Ubuntu or CI."""
 import csv
 import json
 import os
 from pathlib import Path
 import pymysql
 
-out = Path('artifacts/mysql-source-trace')
+out = Path(os.environ.get('PLANLAB_TRACE_OUT', 'artifacts/mysql-source-trace'))
 sql_dir = Path('sql/mysql-source-trace')
 con = pymysql.connect(unix_socket=os.environ['PLANLAB_SOCKET'], user='root', autocommit=True)
 

@@ -2,7 +2,7 @@ name: mysql-source-lab
 on:
   push:
     branches: [main]
-    paths: ['upstream/mysql', '.gitmodules', 'shell_scripts/build-mysql.sh', 'tools/generate_data.py', 'sql/**', 'data/**', '.github/workflows/mysql.yml', 'tools/relational_demo.py']
+    paths: ['upstream/mysql', '.gitmodules', 'shell_scripts/common.sh', 'shell_scripts/build-mysql.sh', 'tools/generate_data.py', 'sql/workload.sql', 'data/**', '.github/workflows/mysql.yml', 'tools/relational_demo.py']
   workflow_dispatch:
 permissions:
   contents: read
@@ -18,27 +18,11 @@ jobs:
       CARGO_PROFILE_RELEASE_LTO: 'false'
     steps:
       - uses: actions/checkout@v4
-      - name: Initialize only this pinned submodule
-        run: git submodule update --init --depth 1 upstream/mysql
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Dependencies
-        run: |
-          sudo apt-get update && sudo apt-get install -y build-essential cmake ninja-build bison pkg-config libssl-dev libncurses-dev libtirpc-dev libudev-dev libaio-dev
-          python -m pip install PyMySQL==1.1.1
-      - name: Record environment and generate public-schema data
-        run: |
-          mkdir -p artifacts
-          git rev-parse HEAD > artifacts/repository-sha.txt
-          git -C upstream/mysql rev-parse HEAD > artifacts/upstream-sha.txt
-          uname -a > artifacts/runner.txt
-          python tools/generate_data.py | tee artifacts/data-manifest.json
-      - name: Build source and run plan experiments
-        shell: bash
-        run: |
-          set -o pipefail
-          bash shell_scripts/build-mysql.sh 2>&1 | tee artifacts/build-and-demo.log
+      - name: Build and run standalone Ubuntu lab
+        run: bash shell_scripts/build-mysql.sh --install-deps --jobs 2 --output-dir artifacts
       - uses: actions/upload-artifact@v4
         if: always()
         with:

@@ -4,6 +4,8 @@
 
 ## 文件分工
 
+所有 SH 已支持普通 Ubuntu 的命令行参数，无需设置 GITHUB_WORKSPACE 或 RUNNER_TEMP。完整参数与本地运行示例见 [shell_scripts 使用说明](../shell_scripts/README.md)。
+
 * `.github/workflows/mysql-source-trace.yml`：仅配置 checkout、Python、调用 `bash shell_scripts/mysql-source-trace.sh` 和上传产物；没有内联构建/SQL命令。
 * `shell_scripts/mysql-source-trace.sh`：初始化官方固定 submodule，安装依赖、编译 Debug mysqld、启动隔离 socket 实例、生成数据、运行实验、打印日志摘要和关闭服务。
 * `sql/mysql-source-trace/schema.sql`：InnoDB 建库建表。
